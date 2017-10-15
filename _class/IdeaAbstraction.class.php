@@ -5,8 +5,8 @@ abstract class IdeaAbstraction{
               $_state,
               $_type,
               $_description,
-              $_authors,	//array of authors usernames
-              $_keywords;	//array of keywords
+              $_authors,	//string of authors usernames separated by ';'
+              $_keywords;	//string of keywords separated by ';'
     //getters
     public function uid(){
     	return $this->_uid;

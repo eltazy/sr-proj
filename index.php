@@ -1,9 +1,13 @@
+<?php
+    if (!isset($_SESSION)) session_start();
+	include_once("_pages/header.php");
+?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Titre</title>
-	</head>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
 	<body>
 		Sign up now!
 		<form method="post" action="signup.php">

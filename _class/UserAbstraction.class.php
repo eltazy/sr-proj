@@ -7,16 +7,15 @@ abstract class UserAbstraction{
               $_username,
               $_email,
               $_type,
-              $_projects,
-              $_ideas,
+              $_projects, //list of projects ID separated by ';'
+              $_ideas, //list of ideas ID separated by ';'
               $_with_projects,
               $_with_ideas;
     //constructor and hydrate functions
     public function __construct(){
         $this->setType();
-        $this->setHasideas(0);
-        $this->setHasprojects(0);
-        $this->addCount();
+        $this->setHasideas(false);
+        $this->setHasprojects(false);
     }
     public function hydrate(array $donnees){
         foreach ($donnees as $key => $value){
@@ -26,7 +25,6 @@ abstract class UserAbstraction{
     }
     //abstract methods
     abstract public function setType(); //set user type STUDENT or LECTURER
-    abstract public function addCount(); //+1 entity
     //getters
     public function fullname(){
         return $this->_firstname.' '.$this->_middlename.' '.$this->_lastname;
@@ -83,15 +81,15 @@ abstract class UserAbstraction{
     public function setEmail($email){
         $this->_email = $email;
     }
-    public function setProjects(array $proj){
-        if(!empty($proj)){
-            $this->_projects = $proj;
+    public function setProjects($projects){
+        if(!empty($projects)){
+            $this->_projects = $projects;
             $this->setHasprojects(true);
         }
     }
-    public function setIdeas(array $pidea){
-        if(!empty($proj)){
-            $this->_ideas = $pidea;
+    public function setIdeas($pideas){
+        if(!empty($pideas)){
+            $this->_ideas = $pideas;
             $this->setHasideas(true);
         }
     }

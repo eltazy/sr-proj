@@ -3,7 +3,7 @@
 include_once 'Idea.class.php';
 
 class IdeaManager{
-    private PDO $_db;
+    private $_db;
 
     //constructor
     public function __construct($db){
@@ -20,8 +20,14 @@ class IdeaManager{
     	$query->execute($arguments);
     }
     public function delete(Idea $idea){
+        $quest = $this->_db->prepare("DELETE FROM ideas_tb WHERE uid = ?");
+        $quest->execute(array($idea->uid()));
     }
     public function get($id){
+        $quest = $this->_db->prepare("SELECT * FROM ideas_tb WHERE uid = ?");
+        $quest->execute(array($uid));
+        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
+        return new Idea($donnees);
     }
     public function getList(){
     }

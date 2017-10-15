@@ -1,6 +1,6 @@
 <?php
 ////////////////script start
-include_once 'project.class.php'
+include_once 'project.class.php';
 
 class ProjectManager{
 	private $_db;

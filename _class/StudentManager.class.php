@@ -34,7 +34,7 @@ class StudentManager{
     //methods for temporary database
     public function temp_add(Student $student, $id){
         $quest = $this->_db->prepare("INSERT INTO temp_students_tb (firstname, middlename, lastname, gender, username, email, schoolid, major, hasideas, hasprojects, uniqueid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $arguments = array($student->firstname(), $student->middlename(), $student->lastname(), $student->gender(), $student->username(), $student->email(), $student->schoolid(), $student->major(), $student->with_ideas(), $student->with_projects(), $id);
+        $arguments = array($student->firstname(), $student->middlename(), $student->lastname(), $student->gender(), $student->username(), $student->email(), $student->schoolid(), $student->major(), 0, 0, $id);
         $quest->execute($arguments);
     }
     public function temp_get($uname, $uniqueid){
@@ -48,11 +48,11 @@ class StudentManager{
         $quest->execute(array($student->username(), $uid));
     }
     //other methods
-    public function studentExists($student_username){
-        $quest = $this->_db->prepare("SELECT username FROM students_tb WHERE username = ?");
-        $quest->execute(array($student_username));
-        $nrow = $quest->fetch(PDO::FETCH_ASSOC);
-        return (bool)$nrow;
+    public function tempStudentExists($student_username, $uid){
+        $quest = $this->_db->prepare("SELECT username FROM temp_students_tb WHERE username = ? AND uniqueid = ?");
+        $quest->execute(array($student_username, $uid));
+        if(!empty($quest->fetchAll())) return true;
+        else return false;
     }
 }
 ////////////////script end
