@@ -6,7 +6,7 @@
 		$message = $_GET['change'];
 		switch ($message){
 			case 'changepwdsuccess':
-				echo '<label class="success_message">Your password was changed successfully</label></br>';		
+				echo '<label class="success_message"> Your password was changed successfully</label></br>';		
 				break;
 		}
 		unset($_GET['change']);
