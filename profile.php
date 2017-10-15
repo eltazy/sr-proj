@@ -1,5 +1,6 @@
 <?php
 	if(!isset($_SESSION)) session_start();
+	
 	include '_pages/header.php';
 	
 	if(isset($_GET['change'])){
