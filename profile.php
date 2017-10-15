@@ -11,7 +11,6 @@
 		}
 		unset($_GET['change']);
 	}
-
 ?>
 <form action="edit_profile.php" method="POST">
     <img class="img-profile" src="<?php echo $_SESSION['repsyst_session_profilepic'] ?>"></br>
