@@ -2,7 +2,6 @@
 	if(!isset($_SESSION)) session_start();
     include '_pages/header.php';
 	if(!isset($_POST['submit_edit_profile'])){
-
     }
 ?>
 <form action="upload_profile.php" method="POST" enctype="multipart/form-data">
