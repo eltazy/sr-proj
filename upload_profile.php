@@ -37,7 +37,7 @@
 			$allowed_file_extensions = array('jpg', 'jpeg', 'png');
 
 			if(in_array($file_extension, $allowed_file_extensions)){
-				if($file_error === 0) {
+				if($file_error == 0) {
 					if($file_size < 5242880) { //less than 5MB
 						$new_filename = 'profile_'.$_SESSION['repsyst_session_username'];
 						$fileDestination = '_uploads/_profiles/'.$new_filename;
