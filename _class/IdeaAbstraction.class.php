@@ -5,8 +5,21 @@ abstract class IdeaAbstraction{
               $_state,
               $_type,
               $_description,
-              $_authors,	//string of authors usernames separated by ';'
+              $_creation_date,
+              $_co_authors,	//string of co-authors usernames separated by ';'
+              $_postedby,
+              $_docs,
+              $_links,
               $_keywords;	//string of keywords separated by ';'
+    //constructor and hydrate functions
+    public function hydrate(array $data){
+        foreach ($data as $key => $value){
+            $method = 'set'.ucfirst($key);
+            if (method_exists($this, $method)) $this->$method($value);
+        }
+    }
+    //abstract methods
+    abstract public function setType();
     //getters
     public function uid(){
     	return $this->_uid;
@@ -23,8 +36,20 @@ abstract class IdeaAbstraction{
     public function description(){
     	return $this->_description;
     }
-    public function authors(){
-    	return $this->_authors;
+    public function date(){
+    	return $this->_creation_date;;
+    }
+    public function coauthors(){
+    	return $this->_co_authors;
+    }
+    public function postedby(){
+    	return $this->_postedby;
+    }
+    public function docs(){
+    	return $this->_docs;
+    }
+    public function links(){
+    	return $this->_links;
     }
     public function keywords(){
     	return $this->_keywords;
@@ -36,37 +61,55 @@ abstract class IdeaAbstraction{
     public function setTitle(string $t_title){
     	$this->_title = $t_title;
     }
-    public function setState(State $t_state){
+    public function setState(string $t_state){
     	$this->_state = $t_state;
-    }
-    public function setType(Type $t_type){
-    	$this->_type = $t_type;
     }
     public function setDescription(string $t_description){
     	$this->_description = $t_description;
     }
-    public function setAuthors(array $t_author){
-    	$this->_authors = $t_author;
+    public function setDate(string $t_date){
+    	$this->_creation_date = $t_date;
     }
-    public function setKeywords(array $t_keywords){
+    public function setCoauthors(string $t_author){
+    	$this->_co_authors = $t_author;
+    }
+    public function setPostedby(string $t_author){
+    	$this->_postedby = $t_author;
+    }
+    public function setDocs(string $t_docs){
+    	$this->_docs = $t_docs;
+    }
+    public function setLinks(string $t_links){
+    	$this->_links = $t_links;
+    }
+    public function setKeywords(string $t_keywords){
     	$this->_keywords = $t_keywords;
     }
-    //methods    
+    //methods
 }
 interface State{
-    const _PROJECT_STARTED = 0;
-    const _PROJECT_ONGOING = 1;
-    const _PROJECT_SUSPENDED = 2;
-    const _PROJECT_ABANDONNED = 3;
-    const _PROJECT_FINISHED = 4;
+    const _PROJECT_STARTED =  "STARTED";
+    const _PROJECT_ONGOING =  "ONGOING";
+    const _PROJECT_SUSPENDED =  "SUSPENDED";
+    const _PROJECT_DROPPED =  "DROPPED";
+    const _PROJECT_FINISHED =  "FINISHED";
+    
+    const _SENIOR_PROJECT_APPROVED = "APPROVED";
+    const _SENIOR_PROJECT_REJECTED = "REJECTED";
 
-    const _IDEA_DEVELOPPED = 5;
-    const _IDEA_NOT_DEVELOPPED = 6;
+    const _RESEARCH_STARTED =  "STARTED";
+    const _RESEARCH_ONGOING =  "ONGOING";
+    const _RESEARCH_SUSPENDED =  "SUSPENDED";
+    const _RESEARCH_DROPPED =  "DROPPED";
+    const _RESEARCH_FINISHED =  "FINISHED";
+
+    const _IDEA_DEVELOPPED =  "DEVELOPPED";
+    const _IDEA_NOT_DEVELOPPED =  "NOT DEVELOPPED";
 }
 interface Type{
-    const IDEA = 0;
-    const PROJECT = 1;
-    const SENIOR_PROJECT = 2;
-    const RESEARCH = 3;
+    const _IDEA = "IDEA";
+    const _PROJECT = "PROJECT";
+    const _SENIOR_PROJECT = "SENIOR PROJECT";
+    const _RESEARCH = "ACADEMIC RESEARCH";
 }
 ?>

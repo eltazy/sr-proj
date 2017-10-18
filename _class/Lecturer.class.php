@@ -9,6 +9,7 @@ class Lecturer extends UserAbstraction{
     //constructor
     public function __construct(array $t_array){
         parent::__construct();
+        $this->setType();
         $this->hydrate($t_array);
     }
     //getters
