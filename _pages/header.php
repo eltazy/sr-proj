@@ -1,7 +1,5 @@
 <!-- Page header -->
-<?php
-    if (!isset($_SESSION)) session_start();
-?>
+<?php if (!isset($_SESSION)) session_start(); ?>
 <head>
     <meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -16,6 +14,10 @@
             </ul>
             <div class="nav-login">
                 <?php
+                    echo    '<form action="./search.php" method="POST">
+                                <input type="text" name="search_input" placeholder="Search">
+                                <button type="submit" name="submit_login">Search</button>
+                            </form>';
                     if (isset($_SESSION['repsyst_session_username'])) {
                         $sess_username = $_SESSION['repsyst_session_username'];
                         $sess_name = $_SESSION['repsyst_session_firstname'].' '.$_SESSION['repsyst_session_lastname'];
@@ -48,7 +50,7 @@
                         <form action="signup">
                             <button type="submit">Signup</button>
                         </form>
-                        <a href="forgot.php"> or Forgot password?</a>';
+                        <a href="forgot_password.php"> or Forgot password?</a>';
                     }
                 ?>
             </div>

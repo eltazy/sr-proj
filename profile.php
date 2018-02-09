@@ -8,7 +8,8 @@
 	include '_pages/header.php';
 
 	$user = $_GET['user'];
-	if ($user == 'myprofile' || $user == $_SESSION['repsyst_session_username']) echo '<head><title>My Profile</title></head>';
+	if ($user == 'myprofile' || $user == $_SESSION['repsyst_session_username'])
+		echo '<head><title>My Profile</title></head>';
 	else echo '<head><title>'.$user.'\'s Profile</title></head>';
 
 	if(isset($_GET['change'])){

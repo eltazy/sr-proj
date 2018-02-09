@@ -23,11 +23,12 @@
             $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
             $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            #Generating unique identifier
+            # Generating unique identifier
             do $uid = strtoupper(substr(sha1($type.$title.uniqid()), -12));
             while (IdeaAbstractionManager::uidExists($uid, $database));
 
-            #Check files upload
+            # Check files upload
+            # TODO: (Javascript) file uploading process
             $success = true;
             for($i = 0, $size = count($_FILES['uploads']['name']); $i < $size; $i++){
                 if($_FILES['uploads']['error'][$i] > 0) $success = false;

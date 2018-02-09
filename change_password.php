@@ -17,9 +17,11 @@
                 echo '<label class="error_message"><b>Something went wrong. Please retry.</b></label>';
                 break;
         }
+        unset($_GET['change']);
     }
-    $_GET['change'] = '';
+    
     if(isset($_SESSION['repsyst_session_username'])){
+        // TODO: (Javascript) enable submit button only if both passwords match
         echo '<form action="change_password.php" method="POST">
                 Current Password: <input type="password" name="current_password"></br>
                 New Password: <input type="password" name="new_password"></br>
@@ -35,7 +37,7 @@
                 if($_POST['new_password'] == $_POST['new_password_biss']){
                     $new_cred = new Authentication($_SESSION['repsyst_session_username'], md5($_POST['new_password']));
                     $temp_CredManager->updatePassword($temp_db_cred, $new_cred->password());
-                    header("Location: profile.php?change=changepwdsuccess");
+                    header("Location: profile.php?user=myprofile&change=changepwdsuccess");
                 }
                 else header("Location: change_password.php?change=notmatching");
             }

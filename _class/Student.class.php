@@ -4,8 +4,7 @@ include_once 'UserAbstraction.class.php';
 class Student extends UserAbstraction{
     private $_schoolid,
             $_major;
-
-    private static $_student_count = 0;
+            
     //constructor and hydrator
     public function __construct(array $t_array){
         parent::__construct();

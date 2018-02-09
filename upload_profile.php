@@ -19,7 +19,7 @@
 				echo '<label class="success_message">Profile change successfull</label>';		
 				break;
 		}
-		$_GET['changeprofilepic'] = ''; //Re-initialize response message.
+		unset($_GET['changeprofilepic']);
 	}
     if (isset($_SESSION['repsyst_session_username'])){
 		if(isset($_POST['submit_picture'])){

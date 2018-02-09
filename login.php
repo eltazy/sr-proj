@@ -56,6 +56,9 @@
 				 if(isset($_GET['login'])){
 					$login = $_GET['login'];
 					switch ($login) {
+						case 'pwd_changed':
+							echo '<label class="success_message">Password successfully changed! Login now.</label><br/>';
+							break;
 						case 'error':
 							echo '<label class="error_message">Log in error!</label><br/>';
 							break;
@@ -77,7 +80,7 @@
 									<button type="submit" name="submit_login">Log in now!</button>
 								</form>
 								<a href="signup.php">or Sign up</a><br/>
-								<a href="forgot.php">Forgot password?</a>
+								<a href="forgot_password.php">Forgot password?</a>
 							</div>
 						</section>';
 			}

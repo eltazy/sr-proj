@@ -2,10 +2,9 @@
 include_once 'UserAbstraction.class.php';
 
 class Lecturer extends UserAbstraction{
-    private $_supervised_projects, //array of supervised projects id
+    private $_supervised_projects, //list of supervised projects id separated by ';'
             $_had_supervised;
 
-    private static $_lecturer_count = 0;
     //constructor
     public function __construct(array $t_array){
         parent::__construct();

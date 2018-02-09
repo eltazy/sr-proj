@@ -24,6 +24,13 @@ class StudentManager{
         $donnees = $quest->fetch(PDO::FETCH_ASSOC);
         return new Student($donnees);
     }
+    public function get_from_email($email){
+        $quest = $this->_db->prepare("SELECT * FROM students_tb WHERE email = ?");
+        $quest->execute(array($email));
+        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
+        if($donnees) return new Student($donnees);
+        return null;
+    }
     public function delete(Student $student){
         $quest = $this->_db->prepare("DELETE FROM students_tb WHERE username = ?");
         $quest->execute(array($student->username()));
