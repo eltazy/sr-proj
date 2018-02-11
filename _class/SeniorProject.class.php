@@ -1,5 +1,4 @@
 <?php
-////////////////script start
 include_once 'Project.class.php';
 
 class SeniorProject extends Project{
@@ -23,5 +22,4 @@ class SeniorProject extends Project{
     	$this->_type = Type::_SENIOR_PROJECT;
     }
 }
-////////////////script end
 ?>

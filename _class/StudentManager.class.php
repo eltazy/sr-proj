@@ -24,6 +24,13 @@ class StudentManager{
         $donnees = $quest->fetch(PDO::FETCH_ASSOC);
         return new Student($donnees);
     }
+    public function getPublicInfo($uname){
+        $quest = $this->_db->prepare("SELECT * FROM students_tb WHERE username = ?");
+        $quest->execute(array($uname));
+        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
+        unset($donnees['schoolid'], $donnees['email']);
+        return new Student($donnees);
+    }
     public function get_from_email($email){
         $quest = $this->_db->prepare("SELECT * FROM students_tb WHERE email = ?");
         $quest->execute(array($email));
@@ -61,6 +68,11 @@ class StudentManager{
         if(!empty($quest->fetchAll())) return true;
         else return false;
     }
+    public static function getFullname($student_username, PDO $db){
+        $quest = $db->prepare("SELECT firstname, middlename, lastname FROM students_tb WHERE username = ?");
+        $quest->execute(array($student_username));
+        $result = $quest->fetch(PDO::FETCH_ASSOC);
+        return $result['firstname'].' '.$result['middlename'][0].'. '.$result['lastname'];
+    }
 }
-////////////////script end
 ?>

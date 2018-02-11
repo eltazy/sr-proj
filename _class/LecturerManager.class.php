@@ -24,6 +24,13 @@ class LecturerManager{
         $donnees = $quest->fetch(PDO::FETCH_ASSOC);
         return new Lecturer($donnees);
     }
+    public function getPublicInfo($uname){
+        $quest = $this->_db->prepare("SELECT * FROM lecturers_tb WHERE username = ?");
+        $quest->execute(array($uname));
+        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
+        unset($donnees['email']);
+        return new Lecturer($donnees);
+    }
     public function delete(Lecturer $lecturer){
         $quest = $this->_db->prepare("DELETE FROM lecturers_tb WHERE username = ?");
         $quest->execute(array($lecturer->username()));
@@ -48,12 +55,17 @@ class LecturerManager{
         $quest->execute(array($lecturer->username(), $uid));
     }
     //other methods
-    public function lecturerExists($lecturer_username){
-        $quest = $this->_db->prepare("SELECT username FROM lecturers_tb WHERE username = ?");
+    public static function lecturerExists($lecturer_username, PDO $db){
+        $quest = $db->prepare("SELECT username FROM lecturers_tb WHERE username = ?");
         $quest->execute(array($lecturer_username));
-        $nrow = $quest->fetch(PDO::FETCH_ASSOC);
-        return (bool)$nrow;
+        if(!empty($quest->fetchAll())) return true;
+        else return false;
+    }
+    public static function getFullname($lecturer_username, PDO $db){
+        $quest = $db->prepare("SELECT firstname, middlename, lastname FROM lecturers_tb WHERE username = ?");
+        $quest->execute(array($lecturer_username));
+        $result = $quest->fetch(PDO::FETCH_ASSOC);
+        return $result['firstname'].' '.$result['middlename'][0].'. '.$result['lastname'];
     }
 }
-////////////////script end
 ?>

@@ -60,7 +60,7 @@
 				$uid = uniqid();
 				$std_manager->temp_add($temp_student, $uid);
 				$temp_CredManager->temp_add($temp_Credentials, $uid);
-				$message = "Go to the following link to activate your account. http://localhost/sr-proj/validateAccount.php?usr=".$temp_student->username()."&uid=".$uid;
+				$message = "Go to the following link to activate your account. http://localhost/sr-proj/validateAccount.php?usr=".$temp_student->username()."&uniqueid=".$uid;
 				if(mail($temp_student->email(), 'Account Validation', $message)) header("Location: signup.php?signup=success");
 				else header("Location: signup.php?signup=failed");
 			}

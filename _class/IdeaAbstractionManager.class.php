@@ -1,5 +1,4 @@
 <?php
-////////////////script start
 include_once 'Idea.class.php';
 include_once 'Project.class.php';
 include_once 'SeniorProject.class.php';
@@ -51,26 +50,16 @@ class IdeaAbstractionManager{
     //get methods
     public function get($uid){
         $quest = $this->_db->prepare("SELECT * FROM abs_ideas_tb WHERE uid = ?");
-        $quest->execute(array($uid, Type::_IDEA));
+        $quest->execute(array($uid));
         $donnees = $quest->fetch(PDO::FETCH_ASSOC);
         $Constructor = '';
         switch ($donnees['type']) {
-            case Type::_IDEA:
-                $Constructor = 'Idea';
-                break;            
-            case Type::_PROJECT:
-                $Constructor = 'Project';
-                break;
-            case Type::_SENIOR_PROJECT:                
-                $Constructor = 'SeniorProject';
-                break;
-            case Type::_RESEARCH:
-                $Constructor = 'Research';
-                break;
+            case Type::_IDEA: $Constructor = 'Idea'; break;
+            case Type::_PROJECT: $Constructor = 'Project'; break;
+            case Type::_SENIOR_PROJECT: $Constructor = 'SeniorProject'; break;
+            case Type::_RESEARCH: $Constructor = 'Research'; break;
         }
-        $obj = $Constructor($donnees);
-        $obj->setState(State::_PROJECT_STARTED);
-        return $obj;
+        return new $Constructor($donnees);
     }
     //exist methods
     public static function uidExists($uid, $_db){
@@ -79,5 +68,5 @@ class IdeaAbstractionManager{
         if(!empty($quest->fetchAll())) return true;
         else return false;
     }
-}////////////////script end
+}
 ?>

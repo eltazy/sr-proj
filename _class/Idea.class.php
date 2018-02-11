@@ -1,5 +1,4 @@
 <?php
-////////////////script start
 include_once 'IdeaAbstraction.class.php';
 
 class Idea extends IdeaAbstraction{
@@ -26,5 +25,4 @@ class Idea extends IdeaAbstraction{
     //other methods
 
 }
-////////////////script end
 ?>

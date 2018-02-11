@@ -1,5 +1,4 @@
 <?php
-////////////////script start
 include_once 'IdeaAbstraction.class.php';
 
 class Research extends IdeaAbstraction{
@@ -23,5 +22,4 @@ class Research extends IdeaAbstraction{
     	$this->_project = $proj_id;
     }
 }
-////////////////script end
 ?>

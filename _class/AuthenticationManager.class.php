@@ -1,5 +1,4 @@
 <?php
-////////////////script start
 include_once 'Authentication.class.php';
 
 class AuthenticationManager{
@@ -34,28 +33,26 @@ class AuthenticationManager{
     }
     //methods for temporary database
     public function temp_add(Authentication $credentials, $uid){
-        $quest = $this->_db->prepare("INSERT INTO temp_user_pwd (username, known_password, uid) VALUES (?, ?, ?)");
+        $quest = $this->_db->prepare("INSERT INTO temp_user_pwd (username, known_password, uniqueid) VALUES (?, ?, ?)");
         $quest->execute(array($credentials->username(), $credentials->password(), $uid));
     }
     public function temp_get($username, $uid){
-        $quest = $this->_db->prepare("SELECT * FROM temp_user_pwd WHERE username = ? AND uid = ?");
+        $quest = $this->_db->prepare("SELECT * FROM temp_user_pwd WHERE username = ? AND uniqueid = ?");
         $quest->execute(array($username, $uid));
         $donnees = $quest->fetch(PDO::FETCH_ASSOC);
         return new Authentication($donnees['username'], $donnees['known_password']);
     }
     public function temp_delete(Authentication $credentials, $uid){
-        $quest = $this->_db->prepare("DELETE FROM temp_user_pwd WHERE username = ? AND uid = ?");
+        $quest = $this->_db->prepare("DELETE FROM temp_user_pwd WHERE username = ? AND uniqueid = ?");
         $quest->execute(array($credentials->username(), $uid));
     }
     //other methods
     public function tempCredentialsExists($student_username, $uid){
-        $quest = $this->_db->prepare("SELECT username FROM temp_user_pwd WHERE username = ? AND uid = ?");
+        $quest = $this->_db->prepare("SELECT username FROM temp_user_pwd WHERE username = ? AND uniqueid = ?");
         $quest->execute(array($student_username, $uid));
         if(!empty($quest->fetchAll())) return true;
         else return false;
     }
 
 }
-
-////////////////script end
 ?>

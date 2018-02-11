@@ -20,7 +20,7 @@ class Lecturer extends UserAbstraction{
     }
     //setters
     public function setType(){
-        $this->_type = Type::LECTURER;
+        $this->_type = UserType::LECTURER;
     }
     public function setSupervision($sup){
         $this->_had_supervised = $sup;

@@ -12,7 +12,8 @@
 ?>
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="style.css" />
+	<!-- TODO:(7) (CSS) Change styling in style.css then uncomment next line-->
+	<!-- <link rel="stylesheet" href="style.css" /> -->
 	<title>Login</title>
 </head>
 
@@ -35,6 +36,7 @@
 
 					if($user_input_cred == $temp_db_cred){ //if there is a match in the db
 						$temp_session_user = $temp_StudentManager->get($user_input_username);
+						$_SESSION['repsyst_session_fullname'] = $temp_session_user->fullname();
 						$_SESSION['repsyst_session_username'] = $temp_session_user->username();
 						$_SESSION['repsyst_session_firstname'] = $temp_session_user->firstname();
 						$_SESSION['repsyst_session_middlename'] = $temp_session_user->middlename();

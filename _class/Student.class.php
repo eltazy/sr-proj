@@ -20,7 +20,7 @@ class Student extends UserAbstraction{
     }
     //setters
     public function setType(){
-        $this->_type = Type::STUDENT;
+        $this->_type = UserType::STUDENT;
     }
     public function setSchoolid($sID){
         $this->_schoolid = $sID;

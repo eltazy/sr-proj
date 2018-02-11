@@ -1,5 +1,4 @@
 <?php
-////////////////script start
 include_once 'IdeaAbstraction.class.php';
 
 class Project extends IdeaAbstraction implements State, Type{
@@ -23,5 +22,4 @@ class Project extends IdeaAbstraction implements State, Type{
         $this->_original_idea =$origin;
     }
 }
-////////////////script end
 ?>

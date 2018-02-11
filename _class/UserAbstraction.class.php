@@ -16,6 +16,11 @@ abstract class UserAbstraction{
         $this->setHasideas(0);
         $this->setHasprojects(0);
     }
+    public function __toString(){
+        return  '<h1><a href="http://localhost/sr-proj/profile.php?user='.$this->username().'&type='.$this->type().'">'.$this->fullname().'</a></h1>
+                <br>Gender: '.$this->gender().
+                '<br>Username: @'.$this->username();
+    }
     public function hydrate(array $donnees){
         foreach ($donnees as $key => $value){
             $method = 'set'.ucfirst($key);
@@ -26,7 +31,7 @@ abstract class UserAbstraction{
     abstract public function setType();
     //getters
     public function fullname(){
-        return $this->_firstname.' '.$this->_middlename.' '.$this->_lastname;
+        return $this->_firstname.' '.substr($this->_middlename, 0, 1).'. '.$this->_lastname;
     }
     public function firstname(){
         return $this->_firstname;
@@ -99,9 +104,9 @@ abstract class UserAbstraction{
         $this->_with_ideas = $h_ideas;
     }
 }//end of class
-interface Type{
-    const STUDENT = 'student';
-    const LECTURER = 'lecturer';
+interface UserType{
+    const STUDENT = 'Student';
+    const LECTURER = 'Lecturer';
 }
 interface Gender{
     const MALE = 'male';

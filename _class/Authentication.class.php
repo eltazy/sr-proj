@@ -1,5 +1,4 @@
 <?php
-////////////////script start
 class Authentication{
     private $_auth_name;
     private $_auth_pwd;
@@ -24,5 +23,4 @@ class Authentication{
         $this->_auth_pwd = $arg;
     }
 }
-////////////////script end
 ?>

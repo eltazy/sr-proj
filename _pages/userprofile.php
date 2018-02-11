@@ -1,6 +1,8 @@
-<form action="edit_profile.php" method="POST">
-    <img class="img-profile" src="<?php echo $userpic ?>"></br>
-    Firstname: <label><?php echo $user_firstname ?></label></br>
-    Middlename:<label><?php echo $user_middlename ?></label></br>
-    Lastname:<label><?php echo $user_lastname ?></label></br>
+<form>
+    <img class="img-profile" src="<?php echo $user_pic ?>"></br>
+    Firstname: <label><?php echo $user->firstname() ?></label></br>
+    Middlename:<label><?php echo $user->middlename() ?></label></br>
+    Lastname:<label><?php echo $user->lastname() ?></label></br>
+    User handle:<label><?php echo '@'.$user->username() ?></label></br>
+    Projects:<label><?php echo '['.$user->projects().']'?></label></br>
 </form>

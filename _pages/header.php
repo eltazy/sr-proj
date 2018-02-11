@@ -2,6 +2,7 @@
 <?php if (!isset($_SESSION)) session_start(); ?>
 <head>
     <meta charset="utf-8" />
+	<!-- TODO:(7) (CSS) Change styling -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -14,9 +15,12 @@
             </ul>
             <div class="nav-login">
                 <?php
-                    echo    '<form action="./search.php" method="POST">
-                                <input type="text" name="search_input" placeholder="Search">
-                                <button type="submit" name="submit_login">Search</button>
+                    if(basename($_SERVER["SCRIPT_FILENAME"], '.php') != 'search')
+                        echo'<form action="./search.php" name="search_form" method="get">
+                                <input type="text" name="search" id="search" placeholder="Search">
+                                <input type="hidden" name="uall" value="all users" checked="checked">
+                                <input type="hidden" name="pall" value="all projects" checked="checked">
+                                <button type="submit">Search</button>
                             </form>';
                     if (isset($_SESSION['repsyst_session_username'])) {
                         $sess_username = $_SESSION['repsyst_session_username'];
@@ -30,12 +34,12 @@
                         }
                         else{
                             if($sess_user_gender == 'male'){
-                                echo '<img class="img-circle" src="./_uploads/_profiles/male_default.jpg">';
-                                $_SESSION['repsyst_session_profilepic'] = '_uploads/_profiles/male_default.jpg';
+                                echo '<img class="img-circle" src="./_uploads/_default/male_default.jpg">';
+                                $_SESSION['repsyst_session_profilepic'] = '_uploads/_default/male_default.jpg';
                             }
                             else if($sess_user_gender == 'female'){
-                                echo '<img class="img-circle" src="./_uploads/_profiles/female_default.jpg">';
-                                $_SESSION['repsyst_session_profilepic'] = '_uploads/_profiles/female_default.jpg';
+                                echo '<img class="img-circle" src="./_uploads/_default/female_default.jpg">';
+                                $_SESSION['repsyst_session_profilepic'] = '_uploads/_default/female_default.jpg';
                             }
                         }
                         echo    '<form action="./logout.php" method="POST">

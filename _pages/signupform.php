@@ -32,7 +32,7 @@
 				<input type="Email" name="email" required placeholder="Email@ueab.ac.ke" value="<?php if(isset($_POST['email'])) $_POST['email'];?>"/>
 				<input type="Password" required placeholder="Password" name="firstpasswd" id="firstpasswd"/>
 				<input type="Password" required placeholder="Re-enter Password" name="reenterpasswd" id="reenterpasswd"/>
-				<button type="submit" name="submit_signup" id="submit_signup" disabled>Sign Up</button>
+				<button type="submit" name="submit_signup" id="submit_signup">Sign Up</button>
 			</form>
 		</div>
 	</section>

@@ -25,7 +25,7 @@
     }
     else{
         if(isset($_GET['u']))
-        // TODO: (Javascript) enable submit button only if both passwords match
+        // TODO:(5) (Javascript) enable submit button only if both passwords match
             echo   '<form action="reset_password.php" method="POST">
                             Your username is <label class="success_message">'.$_GET['u'].'.<br/>
                             <input type="hidden" name="u" value="'.$_GET['u'].'" />
