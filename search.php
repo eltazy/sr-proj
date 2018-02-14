@@ -11,16 +11,16 @@
         function beforeSubmit(element){
             var myform = document.search_form;
 
-            if(element == document.uall)){
-                if(element.checked){
-                    document.findElementById('ostu').setAttribute('checked', 'checked');
-                    document.findElementById('olec').setAttribute('checked', 'checked');
-                }
-                else{
-                    document.findElementById('ostu').setAttribute('checked', 'unchecked');
-                    document.findElementById('olec').setAttribute('checked', 'unchecked');
-                }
-            }
+            // if(element == document.uall)){
+            //     if(element.checked){
+            //         document.findElementById('ostu').setAttribute('checked', 'checked');
+            //         document.findElementById('olec').setAttribute('checked', 'checked');
+            //     }
+            //     else{
+            //         document.findElementById('ostu').setAttribute('checked', 'unchecked');
+            //         document.findElementById('olec').setAttribute('checked', 'unchecked');
+            //     }
+            // }
             // stu.checked = true;
             // var ck_all_users = document.uall;
             // var ck_all_projects = document.pall;
