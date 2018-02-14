@@ -19,7 +19,6 @@
         }
         unset($_GET['change']);
     }
-    
     if(isset($_SESSION['repsyst_session_username'])){
         // TODO:(3) (Javascript) enable submit button only if both passwords match
         echo '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">
