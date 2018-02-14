@@ -62,10 +62,10 @@ class LecturerManager{
         else return false;
     }
     public static function getFullname($lecturer_username, PDO $db){
-        $quest = $db->prepare("SELECT firstname, middlename, lastname FROM lecturers_tb WHERE username = ?");
+        $quest = $db->prepare("SELECT firstname, lastname FROM lecturers_tb WHERE username = ?");
         $quest->execute(array($lecturer_username));
         $result = $quest->fetch(PDO::FETCH_ASSOC);
-        return $result['firstname'].' '.$result['middlename'][0].'. '.$result['lastname'];
+        return $result['firstname'].' '.$result['lastname'];
     }
 }
 ?>

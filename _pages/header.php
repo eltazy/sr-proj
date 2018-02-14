@@ -45,17 +45,8 @@
                         echo    '<form action="./logout.php" method="POST">
                                     <button type="submit" name="submit_logout">Log out</button>
                                 </form>';
-                    } else {
-                        echo '<form action="./login.php" method="POST">
-                            <input type="text" name="username" placeholder="Username">
-                            <input type="password" name="password" placeholder="Password">
-                            <button type="submit" name="submit_login">Login</button>
-                        </form>
-                        <form action="signup">
-                            <button type="submit">Signup</button>
-                        </form>
-                        <a href="forgot_password.php"> or Forgot password?</a>';
                     }
+                    else echo '<a href="./login.php">Login</a> <label> or </label><a href="./signup.php">Signup</a>';
                 ?>
             </div>
         </div>

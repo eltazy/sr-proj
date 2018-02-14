@@ -69,10 +69,10 @@ class StudentManager{
         else return false;
     }
     public static function getFullname($student_username, PDO $db){
-        $quest = $db->prepare("SELECT firstname, middlename, lastname FROM students_tb WHERE username = ?");
+        $quest = $db->prepare("SELECT firstname, lastname FROM students_tb WHERE username = ?");
         $quest->execute(array($student_username));
         $result = $quest->fetch(PDO::FETCH_ASSOC);
-        return $result['firstname'].' '.$result['middlename'][0].'. '.$result['lastname'];
+        return $result['firstname'].' '.$result['lastname'];
     }
 }
 ?>

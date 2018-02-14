@@ -21,12 +21,22 @@
 		$temp = isset($_SESSION['repsyst_session_username'])?$_SESSION['repsyst_session_username']:'';
 		// current logged user
 		if ($username == 'myprofile' || $username == $temp){
-			echo '<head><title>My Profile</title></head>';
-			include '_pages/myprofile.php';
+			echo	'<head><title>My Profile</title></head>
+					<form action="edit_profile.php" method="POST">
+						<img class="img-profile" src="'.$_SESSION['repsyst_session_profilepic'].'"></br>
+						Firstname: <label>'.$_SESSION['repsyst_session_firstname'].'</label></br>
+						Middlename:<label>'.$_SESSION['repsyst_session_middlename'].'</label></br>
+						Lastname:<label>'.$_SESSION['repsyst_session_lastname'].'</label></br>
+						Username:<label>'.$_SESSION['repsyst_session_username'].'</label></br>
+						E-mail:<label>'.$_SESSION['repsyst_session_email'].'</label></br>
+						<button type="submit" name="submit_edit_profile">Edit Profile</button></br>
+					</form>
+					<form action="change_password.php" method="POST">
+						<button type="submit" name="submit_change_password">Change Password</button></br>
+					</form>';
 		}
 		// another user's profile
 		else{
-			
 			$database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
 			$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$__Manager = $_GET['type'].'Manager';
@@ -44,7 +54,14 @@
 				else $user_pic = '_uploads/_default/female_default.jpg';
 			}
 			// showing details
-			include '_pages/userprofile.php';
+			echo	'<form>
+						<img class="img-profile" src="<?php echo $user_pic ?>"></br>
+						Firstname: <label><?php echo $user->firstname() ?></label></br>
+						Middlename:<label><?php echo $user->middlename() ?></label></br>
+						Lastname:<label><?php echo $user->lastname() ?></label></br>
+						User handle:<label>@'.$user->username().'</label></br>
+						Projects:<label>['.$user->projects().']</label></br>
+					</form>';
 		}
 	}
 	else header("Location: index.php");

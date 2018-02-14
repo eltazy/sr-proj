@@ -33,7 +33,7 @@
 		}
 		else header("Location: forgot_password.php?message=nouser");
     }
-    else echo	'<form method="post" action="forgot_password.php">
+    else echo	'<form method="post" action="'.$_SERVER["PHP_SELF"].'">
 				<input type="Email" name="locked_user_email" placeholder="Email@ueab.ac.ke"/>
 				<button type="submit" name="submit_pwd_forgotten">Submit</button>
 				</form>';

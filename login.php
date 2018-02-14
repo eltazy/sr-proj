@@ -76,7 +76,7 @@
 					}
 				}
 				//show login form
-				echo	'		<form class "login-form" method="post" action="login.php">
+				echo	'		<form class "login-form" method="post" action="'.$_SERVER["PHP_SELF"].'">
 									<input type="text" name="username" placeholder="Username"/><br/>
 									<input type="Password" name="password" placeholder="Password"/><br/>
 									<button type="submit" name="submit_login">Log in now!</button>

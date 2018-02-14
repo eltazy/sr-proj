@@ -6,5 +6,14 @@
 <head>
 	<title>Home</title>
 </head>
-<?php
-?>
+<section>
+	<!-- recently added projects -->
+	<article>
+	</article>
+	<!-- recent activity -->
+	<article>
+	</article>
+	<!-- popular topics -->
+	<aside>
+	</aside>
+</section> 

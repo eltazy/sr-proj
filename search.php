@@ -3,7 +3,38 @@
     
 	include_once "_pages/header.php";
 ?>
-<form action="search.php" name="search_form" id="search_form" method="get">
+<head>
+    <title>Search</title>
+    <script>
+    // TODO:(6) (Javascript) auto-enable all sub-checkboxes when either 'All users' or 'All project' options is selected and disable parent when a child option is disabled -->
+    //! FIXME: function should check/uncheck all elements when all is checked/unchecked
+        function beforeSubmit(element){
+            var myform = document.search_form;
+
+            if(element == document.uall)){
+                if(element.checked){
+                    document.findElementById('ostu').setAttribute('checked', 'checked');
+                    document.findElementById('olec').setAttribute('checked', 'checked');
+                }
+                else{
+                    document.findElementById('ostu').setAttribute('checked', 'unchecked');
+                    document.findElementById('olec').setAttribute('checked', 'unchecked');
+                }
+            }
+            // stu.checked = true;
+            // var ck_all_users = document.uall;
+            // var ck_all_projects = document.pall;
+            // if(ck_all_users.checked){
+            //     document.ostu.setAttribute('checked', 'checked');
+            //     document.olec.setAttribute('checked', 'checked');
+            //     // document.ostu.checked = 'checked';
+            //     // document.olec.checked = 'checked';
+            // }
+            myform.submit();
+        }
+    </script>
+</head>
+<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" name="search_form" id="search_form" method="get">
     <input type="text" name="search" id="search" placeholder="Search" <?php
          if(isset($_GET['search'])) echo 'value="'.$_GET['search'].'"'; ?>>
     <button type="submit">Search</button></br>
@@ -15,33 +46,15 @@
          if(isset($_GET['olec'])) echo 'checked="checked"'; ?>>Lecturers</br>
     <input type="checkbox" name="pall" id="pall" value="all project" onChange="beforeSubmit(this)"<?php
          if(isset($_GET['pall'])) echo 'checked="checked"'; ?>><b><i>All projects</i></b>
-    <input type="checkbox" name="osrp" id="osrp" value="SENIOR PROJECT" onChange="beforeSubmit(this)"<?php
+    <input type="checkbox" name="osrp" id="osrp" value="Senior Project" onChange="beforeSubmit(this)"<?php
          if(isset($_GET['osrp'])) echo 'checked="checked"'; ?>>Senior Projects
-    <input type="checkbox" name="oprj" id="oprj" value="PROJECT" onChange="beforeSubmit(this)"<?php
+    <input type="checkbox" name="oprj" id="oprj" value="Project" onChange="beforeSubmit(this)"<?php
          if(isset($_GET['oprj'])) echo 'checked="checked"'; ?>>Projects
-    <input type="checkbox" name="ores" id="ores" value="ACADEMIC RESEARCH" onChange="beforeSubmit(this)"<?php
+    <input type="checkbox" name="ores" id="ores" value="Research" onChange="beforeSubmit(this)"<?php
          if(isset($_GET['ores'])) echo 'checked="checked"'; ?>>Researches
-    <input type="checkbox" name="oid" id="oid" value="IDEA" onChange="beforeSubmit(this)"<?php
+    <input type="checkbox" name="oid" id="oid" value="Idea" onChange="beforeSubmit(this)"<?php
          if(isset($_GET['oid'])) echo 'checked="checked"'; ?>>Ideas</br>
 </form>
-<script>
-// TODO:(6) (Javascript) auto-enable all sub-checkboxes when either 'All users' or 'All project' options is selected and disable parent when a child option is disabled -->
-//! FIXME: function should check/uncheck all elements when all is checked/unchecked
-    function beforeSubmit(element){
-        var myform = document.search_form;
-        // document.getElementbyId("ostu").checked="checked";
-        // stu.checked = true;
-        // var ck_all_users = document.uall;
-        // var ck_all_projects = document.pall;
-        // if(ck_all_users.checked){
-        //     document.ostu.setAttribute('checked', 'checked');
-        //     document.olec.setAttribute('checked', 'checked');
-        //     // document.ostu.checked = 'checked';
-        //     // document.olec.checked = 'checked';
-        // }
-        myform.submit();
-    }
-</script>
 <?php
     if(isset($_GET['search']) && $_GET['search'] != ''){
         $search_str = $_GET['search'];

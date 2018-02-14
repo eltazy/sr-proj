@@ -9,7 +9,7 @@
     <!-- TODO:(8) (AJAX, Javascript) process file upload -->
 	<button type="submit" name="submit_picture">Change picture</button>
 </form>
-<form action="edit_profile.php" method="POST">
+<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
     <img class="img-profile" src="<?php echo $_SESSION['repsyst_session_profilepic'] ?>"></br>
     Firstname:<input type="text" name="p_firstname" value="<?php echo $_SESSION['repsyst_session_firstname'] ?>"></br>
     Middlename:<input type="text" name="p_middlename" value="<?php echo $_SESSION['repsyst_session_middlename'] ?>"></br>

@@ -43,7 +43,7 @@ abstract class IdeaAbstraction{
     public function description(){
     	return $this->_description;
     }
-    public function date(){
+    public function creationdate(){
     	return $this->_creation_date;;
     }
     public function coauthors(){
@@ -74,7 +74,7 @@ abstract class IdeaAbstraction{
     public function setDescription(string $t_description){
     	$this->_description = $t_description;
     }
-    public function setDate(string $t_date){
+    public function setCreationdate($t_date){
     	$this->_creation_date = $t_date;
     }
     public function setCoauthors(string $t_author){
@@ -95,28 +95,28 @@ abstract class IdeaAbstraction{
     //methods
 }
 interface State{
-    const _PROJECT_STARTED =  "STARTED";
-    const _PROJECT_ONGOING =  "ONGOING";
-    const _PROJECT_SUSPENDED =  "SUSPENDED";
-    const _PROJECT_DROPPED =  "DROPPED";
-    const _PROJECT_FINISHED =  "FINISHED";
+    const _PROJECT_STARTED =  "Started";
+    const _PROJECT_ONGOING =  "Ongoing";
+    const _PROJECT_SUSPENDED =  "Suspended";
+    const _PROJECT_DROPPED =  "Dropped";
+    const _PROJECT_FINISHED =  "Finished";
     
-    const _SENIOR_PROJECT_APPROVED = "APPROVED";
-    const _SENIOR_PROJECT_REJECTED = "REJECTED";
+    const _SENIOR_PROJECT_APPROVED = "Approved";
+    const _SENIOR_PROJECT_REJECTED = "Rejected";
 
-    const _RESEARCH_STARTED =  "STARTED";
-    const _RESEARCH_ONGOING =  "ONGOING";
-    const _RESEARCH_SUSPENDED =  "SUSPENDED";
-    const _RESEARCH_DROPPED =  "DROPPED";
-    const _RESEARCH_FINISHED =  "FINISHED";
+    const _RESEARCH_STARTED =  "Started";
+    const _RESEARCH_ONGOING =  "Ongoing";
+    const _RESEARCH_SUSPENDED =  "Suspended";
+    const _RESEARCH_DROPPED =  "Dropped";
+    const _RESEARCH_FINISHED =  "Finished";
 
-    const _IDEA_DEVELOPPED =  "DEVELOPPED";
-    const _IDEA_NOT_DEVELOPPED =  "NOT DEVELOPPED";
+    const _IDEA_DEVELOPPED =  "Developped";
+    const _IDEA_NOT_DEVELOPPED =  "Not Developped";
 }
 interface Type{
-    const _IDEA = "IDEA";
-    const _PROJECT = "PROJECT";
-    const _SENIOR_PROJECT = "SENIOR PROJECT";
-    const _RESEARCH = "ACADEMIC RESEARCH";
+    const _IDEA = "Idea";
+    const _PROJECT = "Project";
+    const _SENIOR_PROJECT = "Senior Project";
+    const _RESEARCH = "Research";
 }
 ?>

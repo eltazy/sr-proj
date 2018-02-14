@@ -22,7 +22,7 @@
     
     if(isset($_SESSION['repsyst_session_username'])){
         // TODO:(3) (Javascript) enable submit button only if both passwords match
-        echo '<form action="change_password.php" method="POST">
+        echo '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">
                 Current Password: <input type="password" name="current_password"></br>
                 New Password: <input type="password" name="new_password"></br>
                 Re-enter new Password: <input type="password" name="new_password_biss"></br>

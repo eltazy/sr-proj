@@ -38,7 +38,7 @@ class IdeaAbstractionManager{
                 $last_arg_value = $idea->resultProject();
                 break;
         }
-        $query = $this->_db->prepare("INSERT INTO abs_ideas_tb (uid, title, state, type, description, coauthors, postedby, links, docs, keywords, creationdate, $last_arg_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURDATE(), ?)");
+        $query = $this->_db->prepare("INSERT INTO abs_ideas_tb (uid, title, state, type, description, coauthors, postedby, links, docs, keywords, creationdate, $last_arg_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_FORMAT(CURDATE(), '%D %M %Y'), ?)");
         $arguments = array($idea->uid(), $idea->title(), $idea->state(), $idea->type(), $idea->description(), $idea->coauthors(), $idea->postedby(), $idea->links(), $idea->docs(), $idea->keywords(), $last_arg_value);
     	$query->execute($arguments);
     }

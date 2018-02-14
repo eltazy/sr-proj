@@ -38,22 +38,22 @@ class SearchManager{
         $results = array();
 
         $res_ideas = new Collection(new SearchResult(array()), 'Idea');
-        if(in_array('IDEA', $search->projectOptions())){
+        if(in_array('Idea', $search->projectOptions())){
             $res_ideas = $this->searchIdeas($search->str());
             array_push($results, $res_ideas);
         }
         $res_projects = new Collection(new SearchResult(array()), 'Project');
-        if(in_array('PROJECT', $search->projectOptions())){
+        if(in_array('Project', $search->projectOptions())){
             $res_projects = $this->searchProjects($search->str());
             array_push($results, $res_projects);
         }
         $res_srproj = new Collection(new SearchResult(array()), 'SeniorProject');
-        if(in_array('SENIOR PROJECT', $search->projectOptions())){
+        if(in_array('Senior Project', $search->projectOptions())){
             $res_srproj = $this->searchSeniorProjects($search->str());
             array_push($results, $res_srproj);
         }
         $res_research = new Collection(new SearchResult(array()), 'Research');
-        if(in_array('ACADEMIC RESEARCH', $search->projectOptions())){
+        if(in_array('Research', $search->projectOptions())){
             $res_research = $this->searchResearches($search->str());
             array_push($results, $res_research);
         }
@@ -86,7 +86,7 @@ class SearchManager{
     }
     public function searchIdeas($str){
         $quest = $this->_db->prepare(" SELECT * FROM abs_ideas_tb
-                                                WHERE type = 'IDEA' 
+                                                WHERE type = 'Idea' 
                                                 AND (title REGEXP '$str' 
                                                 OR description REGEXP '$str' 
                                                 OR keywords REGEXP '$str')");
@@ -98,7 +98,7 @@ class SearchManager{
     }
     public function searchResearches($str){
         $quest = $this->_db->prepare(" SELECT * FROM abs_ideas_tb
-                                                WHERE type = 'ACADEMIC RESEARCH' 
+                                                WHERE type = 'Research' 
                                                 AND (title REGEXP '$str' 
                                                 OR description REGEXP '$str' 
                                                 OR keywords REGEXP '$str')");
@@ -110,7 +110,7 @@ class SearchManager{
     }
     public function searchSeniorProjects($str){
         $quest = $this->_db->prepare(" SELECT * FROM abs_ideas_tb
-                                                WHERE type = 'SENIOR PROJECT' 
+                                                WHERE type = 'Senior Project' 
                                                 AND (title REGEXP '$str' 
                                                 OR description REGEXP '$str' 
                                                 OR keywords REGEXP '$str')");
@@ -122,7 +122,7 @@ class SearchManager{
     }
     public function searchProjects($str){
         $quest = $this->_db->prepare(" SELECT * FROM abs_ideas_tb
-                                                WHERE type = 'PROJECT' 
+                                                WHERE type = 'Project' 
                                                 AND (title REGEXP '$str' 
                                                 OR description REGEXP '$str' 
                                                 OR keywords REGEXP '$str')");
