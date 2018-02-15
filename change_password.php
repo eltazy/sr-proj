@@ -1,7 +1,12 @@
 <?php
     if(!isset($_SESSION)) session_start();
 
-    include_once '_class/AuthenticationManager.class.php';
+    include_once '_class/AuthenticationManager.class.php';?>
+<head>
+    <script src="_scripts/jquery-3.3.1.min.js"></script>
+    <script src="_scripts/signup.js"></script>
+</head>
+<?php
     include '_pages/header.php';
 
     if(isset($_GET['change'])){
@@ -20,12 +25,12 @@
         unset($_GET['change']);
     }
     if(isset($_SESSION['repsyst_session_username'])){
-        // TODO:(3) (Javascript) enable submit button only if both passwords match
+        // COMPLETED: (Javascript - jQuery) enable submit button only if both passwords match
         echo '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">
                 Current Password: <input type="password" name="current_password"></br>
-                New Password: <input type="password" name="new_password"></br>
-                Re-enter new Password: <input type="password" name="new_password_biss"></br>
-                <button type="submit" name="submit_changepwd">Submit</button>
+                New Password: <input type="password" name="new_password" id="firstpasswd"></br>
+                Re-enter new Password: <input type="password" name="new_password_biss" id="reenterpasswd" disabled></br>
+                <button type="submit" name="submit_changepwd" id="submit_signup" disabled>Submit</button>
             </form>';
         if(isset($_POST['submit_changepwd'])){
             $curr_user = new Authentication($_SESSION['repsyst_session_username'], md5($_POST['current_password']));

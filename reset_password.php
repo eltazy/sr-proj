@@ -7,8 +7,10 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" href="style.css" />
         <title>Reset Password</title>
-    </head><?php 
-    
+        <script src="_scripts/jquery-3.3.1.min.js"></script>
+        <script src="_scripts/signup.js"></script>
+    </head>
+<?php
     if(isset($_SESSION['repsyst_session_username'])) header("Location: forgot_password.php?message=loggedin");
     else if(isset($_POST['submit_reset_password'])){
         $new_pwd=$_POST['new_password'];
@@ -25,13 +27,13 @@
     }
     else{
         if(isset($_GET['u']))
-        // TODO:(5) (Javascript) enable submit button only if both passwords match
+        // COMPLETED: (Javascript -jQuery) enable submit button only if both passwords match
             echo   '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">
                             Your username is <label class="success_message">'.$_GET['u'].'.<br/>
                             <input type="hidden" name="u" value="'.$_GET['u'].'" />
-                            Enter new Password: <input type="password" name="new_password" required></br>
-                            Re-enter new Password: <input type="password" name="new_password_biss" required></br>
-                            <button type="submit" name="submit_reset_password">Submit</button>
+                            Enter new Password: <input type="password" name="new_password" required id="firstpasswd"></br>
+                            Re-enter new Password: <input type="password" name="new_password_biss" id="reenterpasswd" required disabled></br>
+                            <button type="submit" name="submit_reset_password" id="submit_signup" disabled>Submit</button>
                         </form>';
         else header("Location: index.php");
         }

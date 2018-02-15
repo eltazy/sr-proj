@@ -1,9 +1,14 @@
-// Associate page elements
-var fst_pwd = document.getElementById('firstpasswd');
-var sec_pwd = document.getElementById('reenterpasswd');
-var btn_submit = document.getElementById('submit_signup');
-
-sec_pwd.onkeyup = function() {
-    if (fst_pwd.value == sec_pwd.value) btn_submit.style.disabled = false;
-}
-btn_submit.onsubmit = function() {}
+$(document).ready(function(){
+    // signup page scripts
+    $("#firstpasswd").keyup(function(){
+        var value = $(this).val();
+        if(value) $('#reenterpasswd').prop('disabled', false);
+        else $('#reenterpasswd').prop('disabled', true);
+    });
+    $("#reenterpasswd").keyup(function(){
+        var same_value = $(this).val() == $("#firstpasswd").val();
+        if(same_value) $('#submit_signup').prop('disabled', false);
+        else $('#submit_signup').prop('disabled', true);
+    });
+    // 
+});

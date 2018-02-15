@@ -4,9 +4,14 @@
 	include_once '_class/StudentManager.class.php';
 	include_once '_class/LecturerManager.class.php';
 	include_once '_class/AuthenticationManager.class.php';
-
+?>
+<head>
+    <script src="_scripts/jquery-3.3.1.min.js"></script>
+	<script src="_scripts/signup.js"></script>
+</head>
+<?php
 	include '_pages/header.php';
-	//if there is a running session go to home page
+
 	if(isset($_SESSION['repsyst_session_username'])){
 		header("Location: index.php");
 		exit();
@@ -98,8 +103,6 @@
 		//checking type of user
 		if(isset($_POST['type'])){ ?>
 		<head>
-			<meta charset="utf-8" />
-			<!-- <link rel="stylesheet" href="style.css" /> -->
 			<title>Sign Up!</title>
 		</head>
 		<body>
@@ -130,12 +133,11 @@
 						<?php } ?>
 						<input type="Email" name="email" required placeholder="Email@ueab.ac.ke" value="<?php if(isset($_POST['email'])) $_POST['email'];?>"/>
 						<input type="Password" required placeholder="Password" name="firstpasswd" id="firstpasswd"/>
-						<input type="Password" required placeholder="Re-enter Password" name="reenterpasswd" id="reenterpasswd"/>
-						<button type="submit" name="submit_signup" id="submit_signup">Sign Up</button>
+						<input type="Password" required placeholder="Re-enter Password" name="reenterpasswd" id="reenterpasswd" disabled/>
+						<button type="submit" name="submit_signup" id="submit_signup" disabled>Sign Up</button>
 					</form>
 				</div>
 			</section>
-			<script src="../_js/signup.js"></script>
 		</body><?php
 		}
 		else echo	'<form class="signup-option" method="post" action="'.$_SERVER["PHP_SELF"].'">
