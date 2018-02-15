@@ -4,16 +4,22 @@ include_once 'Project.class.php';
 include_once 'SeniorProject.class.php';
 include_once 'Research.class.php';
 
+include_once 'TopicManager.class.php';
+
 class IdeaAbstractionManager{
     private $_db;
 
-    //constructor
+    // constructor
     public function __construct($db){
     	$this->setDB($db);
     }
-    //setters
+    // setters
     public function setDB(PDO $temp_db){
     	$this->_db = $temp_db;
+    }
+    // getters
+    public function db(){
+    	return $this->_db;
     }
 //methods
     //add methods
@@ -41,6 +47,13 @@ class IdeaAbstractionManager{
         $query = $this->_db->prepare("INSERT INTO abs_ideas_tb (uid, title, state, type, description, coauthors, postedby, links, docs, keywords, creationdate, $last_arg_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_FORMAT(CURDATE(), '%D %M %Y'), ?)");
         $arguments = array($idea->uid(), $idea->title(), $idea->state(), $idea->type(), $idea->description(), $idea->coauthors(), $idea->postedby(), $idea->links(), $idea->docs(), $idea->keywords(), $last_arg_value);
     	$query->execute($arguments);
+        // COMPLETED: add new keywods to db or increment their hits
+        $topics = explode(';', $idea->keywords());
+        foreach ($topics as $topic) {
+            if(TopicManager::topicExists($topic, $this->db()))
+                TopicManager::addProject($topic, $idea->uid(), $this->db());
+            else TopicManager::addNew($topic, $idea->uid(), $this->db());
+        }
     }
     //delete methods
     public function delete($uid){
