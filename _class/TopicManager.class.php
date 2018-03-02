@@ -20,8 +20,18 @@ class TopicManager{
     public function get($topic){
         $quest = $this->_db->prepare("SELECT * FROM topics WHERE topic = ?");
         $quest->execute(array($topic));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
-        return new Topic($donnees['topic'], $donnees['hits'], explode(';', $donnees['projects']));
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
+        return new Topic($response_data);
+    }
+    public static function getTopics($topic){
+        $quest = $this->_db->prepare("SELECT * FROM topics");
+        $quest->execute();
+        return $quest->fetchAll();
+    }
+    public static function getPopularTopics($db){
+        $quest = $db->prepare("SELECT * FROM topics ORDER BY hits DESC LIMIT 10");
+        $quest->execute();
+        return $quest->fetchAll();
     }
     public static function addProject($topic, $new_project, $db){
         $quest = $db->prepare("UPDATE topics SET projects = CONCAT(projects, ';', ?) WHERE topic = ?");

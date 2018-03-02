@@ -22,7 +22,7 @@
         $authors = explode(';', $project->coauthors());
         $keywords = explode(';', $project->keywords());
         $postedby = $project->postedby();
-        $documents = explode(';', $project->docs());
+        // $documents = explode(';', $project->docs());
         
         echo    '<h1>'.$project->title().'</h1>
                 <p>'.$project->description().'</p></br>
@@ -54,12 +54,14 @@
                     $project->type().'</br>
                 Keywords: ';
                     foreach ($keywords as $key)
-                        echo '<u><a href="http://localhost/sr-proj/search.php?topic='.$key.'">'.$key.'</a></u> ';
-        echo    '</br>Documents: ';
-                    $temp = '';
-                    foreach ($documents as $doc)
-                        $temp = $temp.'<a href="./_uploads/_documents/AB8CE9F1D6DF.docx" target="_blank" download>download</a>; ';
-                    echo substr($temp, 0, -2).'</br>';
+                        echo '<u><a href="http://localhost/sr-proj/topic.php?title='.$key.'">'.$key.'</a></u> ';
+        // echo    '</br>Documents: ';
+        //             $temp = '';
+        //             foreach ($documents as $doc)
+        //                 $temp = $temp.'<a href="./_uploads/_documents/AB8CE9F1D6DF.docx" target="_blank" download>download</a>; ';
+        //             echo substr($temp, 0, -2).'</br>';
+        if($postedby == $_SESSION['repsyst_session_username'])
+            echo '<a href="http://localhost/sr-proj/update_project.php?uid='.$uid.'">Update Project</a>';
 	}
 	else header("Location: index.php");
 ?>

@@ -20,8 +20,8 @@ class AuthenticationManager{
     public function get($username){
         $quest = $this->_db->prepare("SELECT * FROM user_pwd WHERE username = ?");
         $quest->execute(array($username));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
-        return new Authentication($donnees['username'], $donnees['known_password']);
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
+        return new Authentication($response_data['username'], $response_data['known_password']);
     }
     public function delete(Authentication $credentials){
         $quest = $this->_db->prepare("DELETE FROM user_pwd WHERE username = ?");
@@ -39,8 +39,8 @@ class AuthenticationManager{
     public function temp_get($username, $uid){
         $quest = $this->_db->prepare("SELECT * FROM temp_user_pwd WHERE username = ? AND uniqueid = ?");
         $quest->execute(array($username, $uid));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
-        return new Authentication($donnees['username'], $donnees['known_password']);
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
+        return new Authentication($response_data['username'], $response_data['known_password']);
     }
     public function temp_delete(Authentication $credentials, $uid){
         $quest = $this->_db->prepare("DELETE FROM temp_user_pwd WHERE username = ? AND uniqueid = ?");

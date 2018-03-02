@@ -21,21 +21,21 @@ class StudentManager{
     public function get($uname){
         $quest = $this->_db->prepare("SELECT * FROM students_tb WHERE username = ?");
         $quest->execute(array($uname));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
-        return new Student($donnees);
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
+        return new Student($response_data);
     }
     public function getPublicInfo($uname){
         $quest = $this->_db->prepare("SELECT * FROM students_tb WHERE username = ?");
         $quest->execute(array($uname));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
-        unset($donnees['schoolid'], $donnees['email']);
-        return new Student($donnees);
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
+        unset($response_data['schoolid'], $response_data['email']);
+        return new Student($response_data);
     }
     public function get_from_email($email){
         $quest = $this->_db->prepare("SELECT * FROM students_tb WHERE email = ?");
         $quest->execute(array($email));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
-        if($donnees) return new Student($donnees);
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
+        if($response_data) return new Student($response_data);
         return null;
     }
     public function delete(Student $student){
@@ -54,8 +54,8 @@ class StudentManager{
     public function temp_get($uname, $uniqueid){
         $quest = $this->_db->prepare("SELECT * FROM temp_students_tb WHERE username = ? AND uniqueid = ?");
         $quest->execute(array($uname, $uniqueid));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
-        return new Student($donnees);
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
+        return new Student($response_data);
     }
     public function temp_delete(Student $student, $uid){
         $quest = $this->_db->prepare("DELETE FROM temp_students_tb WHERE username = ? AND uniqueid = ?");

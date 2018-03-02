@@ -21,8 +21,8 @@ abstract class UserAbstraction{
                 <br>Gender: '.$this->gender().
                 '<br>Username: @'.$this->username();
     }
-    public function hydrate(array $donnees){
-        foreach ($donnees as $key => $value){
+    public function hydrate(array $response_data){
+        foreach ($response_data as $key => $value){
             $method = 'set'.ucfirst($key);
             if (method_exists($this, $method)) $this->$method($value);
         }

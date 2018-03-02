@@ -27,6 +27,7 @@ abstract class IdeaAbstraction{
     }
     //abstract methods
     abstract public function setType();
+    abstract public static function getStates();
     //getters
     public function uid(){
     	return $this->_uid;
@@ -94,22 +95,25 @@ abstract class IdeaAbstraction{
     }
     //methods
 }
-interface State{
+interface ProjectState{
     const _PROJECT_STARTED =  "Started";
     const _PROJECT_ONGOING =  "Ongoing";
     const _PROJECT_SUSPENDED =  "Suspended";
     const _PROJECT_DROPPED =  "Dropped";
     const _PROJECT_FINISHED =  "Finished";
-    
+}
+interface SeniorProjectState{
     const _SENIOR_PROJECT_APPROVED = "Approved";
     const _SENIOR_PROJECT_REJECTED = "Rejected";
-
+}
+interface ResearchState{
     const _RESEARCH_STARTED =  "Started";
     const _RESEARCH_ONGOING =  "Ongoing";
     const _RESEARCH_SUSPENDED =  "Suspended";
     const _RESEARCH_DROPPED =  "Dropped";
     const _RESEARCH_FINISHED =  "Finished";
-
+}
+interface IdeaState{
     const _IDEA_DEVELOPPED =  "Developped";
     const _IDEA_NOT_DEVELOPPED =  "Not Developped";
 }

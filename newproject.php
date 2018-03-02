@@ -54,29 +54,29 @@
 
             # Check files upload
             # TODO:(8) (Javascript) file uploading process
-            $success = true;
-            for($i = 0, $size = count($_FILES['uploads']['name']); $i < $size; $i++){
-                if($_FILES['uploads']['error'][$i] > 0) $success = false;
-                else{
-                    $file_name = $_FILES['uploads']['name'][$i];
-                    $file_temp_name = $_FILES['uploads']['tmp_name'][$i];
+            // $success = true;
+            // for($i = 0, $size = count($_FILES['uploads']['name']); $i < $size; $i++){
+            //     if($_FILES['uploads']['error'][$i] > 0) $success = false;
+            //     else{
+            //         $file_name = $_FILES['uploads']['name'][$i];
+            //         $file_temp_name = $_FILES['uploads']['tmp_name'][$i];
         
-                    $file_extension = explode('.', $file_name);
-                    $file_extension = strtolower(end($file_extension));
+            //         $file_extension = explode('.', $file_name);
+            //         $file_extension = strtolower(end($file_extension));
         
-                    $allowed_file_extensions = array('pdf', 'doc', 'odt', 'odp', 'docx', 'ppt', 'pptx', 'ppsx', 'pps');
+            //         $allowed_file_extensions = array('pdf', 'doc', 'odt', 'odp', 'docx', 'ppt', 'pptx', 'ppsx', 'pps');
         
-                    if(in_array($file_extension, $allowed_file_extensions)){
-                        if($_FILES['uploads']['size'][$i] < 20971520) { //less than 20MB
-                            $new_filename = '_uploads/_documents/'.$uid.'.'.$file_extension;
-                            move_uploaded_file($file_temp_name, $new_filename);
-                            $docs = $docs.';'.$new_filename;
-                        }
-                        else $success = false;
-                    }
-                    else $success = false;
-                }
-            }
+            //         if(in_array($file_extension, $allowed_file_extensions)){
+            //             if($_FILES['uploads']['size'][$i] < 20971520) { //less than 20MB
+            //                 $new_filename = '_uploads/_documents/'.$uid.'.'.$file_extension;
+            //                 move_uploaded_file($file_temp_name, $new_filename);
+            //                 $docs = $docs.';'.$new_filename;
+            //             }
+            //             else $success = false;
+            //         }
+            //         else $success = false;
+            //     }
+            // }
             #Building array to pass to constructor
             $t_project = array('uid'=>$uid,
                                 'title'=>$title,
@@ -94,14 +94,15 @@
             $idea_manager->add($my_idea);
 
             #Returns error message if files could not be uploaded fully
-            if($success) header("Location: newproject.php?new=projectadded&uid=".$uid);
-            else header("Location: newproject.php?new=filesupload");
+            // if($success)
+            header("Location: newproject.php?new=projectadded&uid=".$uid);
+            // else header("Location: newproject.php?new=filesupload");
 		}
 		else{?>
 			<h1>Add new</h1>
 			<section class="main-container">
 				<div class="main-wrapper">
-					<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" enctype="multipart/form-data">
+					<form action="<?= $_SERVER["PHP_SELF"] ?>" method="post" enctype="multipart/form-data">
                         <table>
                             <tr><td>Title:</td><td><input type="text" name="title" placeholder="Title" class="textfield" required></td></tr>
                             <tr><td>Description:</td><td><textarea name="description" cols="30" rows="10" class="textfield" required></textarea></td></tr>
@@ -120,7 +121,7 @@
 						    <tr><td>Topics:</td><td><input type="text" class="textfield" name="topics" id="topics" placeholder="keyword1; keyword2; keyword3;..." required>
                                 <div id="topic_suggestion_box"></div></td></tr>
                             <!-- TODO:(8) (AJAX-Javascript) process files upload status -->
-						    <tr><td>Files:</td><td><input name="uploads[]" type="file" multiple="multiple" accept=".odp, .pdf, .odt, .doc, .docx, .ppt, .pptx, .ppsx, .pps"/></td></tr>
+						    <!-- <tr><td>Files:</td><td><input name="uploads[]" type="file" multiple="multiple" accept=".odp, .pdf, .odt, .doc, .docx, .ppt, .pptx, .ppsx, .pps"/></td></tr> -->
                             <tr><td></td><td><button type="submit" name="submit_addproject">Add ></button></td></tr>
                         </table>
 					</form>

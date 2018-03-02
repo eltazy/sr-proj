@@ -64,15 +64,20 @@ class IdeaAbstractionManager{
     public function get($uid){
         $quest = $this->_db->prepare("SELECT * FROM abs_ideas_tb WHERE uid = ?");
         $quest->execute(array($uid));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
         $Constructor = '';
-        switch ($donnees['type']) {
+        switch ($response_data['type']) {
             case Type::_IDEA: $Constructor = 'Idea'; break;
             case Type::_PROJECT: $Constructor = 'Project'; break;
             case Type::_SENIOR_PROJECT: $Constructor = 'SeniorProject'; break;
             case Type::_RESEARCH: $Constructor = 'Research'; break;
         }
-        return new $Constructor($donnees);
+        return new $Constructor($response_data);
+    }
+    public static function getLatestProjects($db){
+        $quest = $db->prepare("SELECT * FROM abs_ideas_tb ORDER BY id DESC LIMIT 15");
+        $quest->execute();
+        return $quest->fetchAll();
     }
     //exist methods
     public static function uidExists($uid, $_db){

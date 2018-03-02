@@ -109,7 +109,7 @@
 			<section class="main-container">
 				<div class="main-wrapper">
 					<h1>Signup</h1>
-					<form class="signup-form" method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+					<form class="signup-form" method="post" action="<?= $_SERVER["PHP_SELF"] ?>">
 						<input type="text" name="firstname" required placeholder="First Name" value="<?php if(isset($_POST['firstname'])) $_POST['firstname'];?>" /><br/>
 						<input type="text" name="middlename" placeholder= "Middle Name" value="<?php if(isset($_POST['middlename'])) $_POST['middlename'];?>" /><br/>
 						<input type="text" name="lastname" required placeholder="Last Name" value="<?php if(isset($_POST['lastname'])) $_POST['lastname'];?>" /><br/>

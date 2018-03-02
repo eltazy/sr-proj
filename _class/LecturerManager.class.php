@@ -21,15 +21,15 @@ class LecturerManager{
     public function get($uname){
         $quest = $this->_db->prepare("SELECT * FROM lecturers_tb WHERE username = ?");
         $quest->execute(array($uname));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
-        return new Lecturer($donnees);
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
+        return new Lecturer($response_data);
     }
     public function getPublicInfo($uname){
         $quest = $this->_db->prepare("SELECT * FROM lecturers_tb WHERE username = ?");
         $quest->execute(array($uname));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
-        unset($donnees['email']);
-        return new Lecturer($donnees);
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
+        unset($response_data['email']);
+        return new Lecturer($response_data);
     }
     public function delete(Lecturer $lecturer){
         $quest = $this->_db->prepare("DELETE FROM lecturers_tb WHERE username = ?");
@@ -47,8 +47,8 @@ class LecturerManager{
     public function temp_get($uname, $uniqueid){
         $quest = $this->_db->prepare("SELECT * FROM temp_lecturers_tb WHERE username = ? AND uniqueid = ?");
         $quest->execute(array($uname, $uniqueid));
-        $donnees = $quest->fetch(PDO::FETCH_ASSOC);
-        return new Lecturer($donnees);
+        $response_data = $quest->fetch(PDO::FETCH_ASSOC);
+        return new Lecturer($response_data);
     }
     public function temp_delete(Lecturer $lecturer, $uid){
         $quest = $this->_db->prepare("DELETE FROM temp_lecturers_tb WHERE username = ? AND uniqueid = ?");

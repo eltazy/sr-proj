@@ -8,7 +8,7 @@
     <script src="_scripts/jquery-3.3.1.min.js"></script>
     <script src="_scripts/search.js"></script>
 </head>
-<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" name="search_form" id="search_form" method="get">
+<form action="<?= $_SERVER["PHP_SELF"] ?>" name="search_form" id="search_form" method="get">
     <input type="text" name="search" id="search" placeholder="Search" <?php
          if(isset($_GET['search'])) echo 'value="'.$_GET['search'].'"'; ?>>
     <button type="submit">Search</button></br>
@@ -32,7 +32,7 @@
         <input type="checkbox" name="oid" id="oid" value="Idea" onChange="beforeWSubmit(this)"<?php
             if(isset($_GET['oid'])) echo 'checked="checked"'; ?>>Ideas
     </div>
-</form>
+</form><hr>
 <?php
     if(isset($_GET['search']) && $_GET['search'] != ''){
         $search_str = $_GET['search'];
@@ -51,9 +51,9 @@
         $search_results = $search_manager->search($search);
         foreach ($search_results as $collection) {
             echo $collection->heading().'<br>';
-            foreach ($collection->results() as $o) echo $o.'<br>';
-            echo '<br><br>';
+            foreach ($collection->results() as $o) echo $o.'<hr>';
+            echo '<hr>';
         }
     }
-    else echo '<br><br><h1>Nothing to show</h1>';
+    else echo '<hr><h1>Nothing to show</h1>';
 ?>

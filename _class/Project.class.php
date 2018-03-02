@@ -1,13 +1,13 @@
 <?php
 include_once 'IdeaAbstraction.class.php';
 
-class Project extends IdeaAbstraction implements State, Type{
+class Project extends IdeaAbstraction implements ProjectState, Type{
     protected $_original_idea;
         
     //constructor and/or hydration
     public function __construct(array $t_array){
         $this->setType();
-        $this->setState(State::_PROJECT_STARTED);
+        $this->setState(ProjectState::_PROJECT_STARTED);
         $this->hydrate($t_array);
     }
     //getters
@@ -20,6 +20,10 @@ class Project extends IdeaAbstraction implements State, Type{
     }
     public function setOriginalIdea($origin){
         $this->_original_idea =$origin;
+    }
+    //other methods
+    public static function getStates(){
+        return array("Started", "Ongoing", "Suspended", "Dropped", "Finished");
     }
 }
 ?>

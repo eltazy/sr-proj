@@ -55,10 +55,10 @@
 			}
 			// showing details
 			echo	'<form>
-						<img class="img-profile" src="<?php echo $user_pic ?>"></br>
-						Firstname: <label><?php echo $user->firstname() ?></label></br>
-						Middlename:<label><?php echo $user->middlename() ?></label></br>
-						Lastname:<label><?php echo $user->lastname() ?></label></br>
+						<img class="img-profile" src="<?= $user_pic ?>"></br>
+						Firstname: <label><?= $user->firstname() ?></label></br>
+						Middlename:<label><?= $user->middlename() ?></label></br>
+						Lastname:<label><?= $user->lastname() ?></label></br>
 						User handle:<label>@'.$user->username().'</label></br>
 						Projects:<label>['.$user->projects().']</label></br>
 					</form>';
