@@ -3,17 +3,28 @@
 	
 	include_once("_pages/header.php");
 ?>
-<head>
-	<title>Home</title>
-</head>
-<section>
-	<!-- recently added projects -->
+<section class="landingpage">
+
+
+	<div class="landingpage-text">
+		<h1>Database of Research Papers in 
+  			<span class="txt-rotate" data-period="2000" data-rotate='[ "Business", "Science and Technology", "Health Sciences", "Social Sciences", "Education" ]'></span>
+		</h1>
+		<h2>From <br/><br/>THE UNIVERSITY OF EASTERN AFRICA, BARATON</h2>
+	</div>
+
+
+	<!--<section>
+
+	<!-- recently added projects
 	<article>
 	</article>
-	<!-- recent activity -->
+	<!-- recent activity 
 	<article>
 	</article>
-	<!-- popular topics -->
-	<aside>
+	<!-- popular topics
 	</aside>
-</section> 
+</section> -->
+
+
+</section>

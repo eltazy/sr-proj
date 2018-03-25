@@ -105,8 +105,10 @@
 		<body>
 			<section class="main-container">
 				<div class="main-wrapper">
+					<div class="form-wrapper">
 					<h1>Signup</h1>
 					<form class="signup-form" method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+						<div class="container-input">
 						<input type="text" name="firstname" required placeholder="First Name" value="<?php if(isset($_POST['firstname'])) $_POST['firstname'];?>" /><br/>
 						<input type="text" name="middlename" placeholder= "Middle Name" value="<?php if(isset($_POST['middlename'])) $_POST['middlename'];?>" /><br/>
 						<input type="text" name="lastname" required placeholder="Last Name" value="<?php if(isset($_POST['lastname'])) $_POST['lastname'];?>" /><br/>
@@ -131,8 +133,11 @@
 						<input type="Email" name="email" required placeholder="Email@ueab.ac.ke" value="<?php if(isset($_POST['email'])) $_POST['email'];?>"/>
 						<input type="Password" required placeholder="Password" name="firstpasswd" id="firstpasswd"/>
 						<input type="Password" required placeholder="Re-enter Password" name="reenterpasswd" id="reenterpasswd"/>
-						<button type="submit" name="submit_signup" id="submit_signup">Sign Up</button>
+						<button type="submit" name="submit_signup" id="submit_signup">Let's Go!</button>
+
+						</div>
 					</form>
+				</div>
 				</div>
 			</section>
 			<script src="../_js/signup.js"></script>

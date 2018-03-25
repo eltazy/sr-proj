@@ -4,11 +4,14 @@
     <meta charset="utf-8" />
 	<!-- TODO:(7) (CSS) Change styling -->
 	<link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="_scripts/landingtext.js"></script>
+
 </head>
 
 <header>
     <nav>
         <div class="main-wrapper">
+            <img src="_css_images/ueab_logo.png">
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="newproject.php">New Project</a></li>
@@ -17,7 +20,7 @@
                 <?php
                     if(basename($_SERVER["SCRIPT_FILENAME"], '.php') != 'search')
                         echo'<form action="./search.php" name="search_form" method="get">
-                                <input type="text" name="search" id="search" placeholder="Search">
+                                <input type="text" name="search" id="search" placeholder="eg. research paper title">
                                 <input type="hidden" name="uall" value="all users" checked="checked">
                                 <input type="hidden" name="pall" value="all projects" checked="checked">
                                 <button type="submit">Search</button>
@@ -46,7 +49,10 @@
                                     <button type="submit" name="submit_logout">Log out</button>
                                 </form>';
                     }
-                    else echo '<a href="./login.php">Login</a> <label> or </label><a href="./signup.php">Signup</a>';
+                    else echo ' <ul>
+                                    <li><a href="./login.php">Login</a></li>
+                                    <li><a href="./signup.php">Signup</a></li>
+                                </ul> ';
                 ?>
             </div>
         </div>

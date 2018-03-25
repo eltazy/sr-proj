@@ -5,84 +5,55 @@
 ?>
 <head>
     <title>Search</title>
-    <script src="_scripts/jquery-3.3.1.min.js"></script>
     <script>
-    // COMPLETED: (Javascript - jQuery) auto-enable all sub-checkboxes when either 'All users' or 'All project' options is selected and disable parent when a child option is disabled -->
-    // COMPLETED: (Javascript - jQuery) function should check/uncheck all elements when all is checked/unchecked$(document).ready(function(){
-    function beforeUSubmit(element){
-        var name = element.name;
-        switch (name) {
-            case 'uall':
-                if(element.checked){
-                    $('#ostu').prop('checked', true);
-                    $('#olec').prop('checked', true);
-                }else{
-                    $('#ostu').prop('checked', false);
-                    $('#olec').prop('checked', false);
-                }
-                break;
-            default:
-                var allChecked =    $("#olec").prop('checked') &&
-                                    $("#ostu").prop('checked');
-                if(allChecked) $('#uall').prop('checked', true);
-                else $('#uall').prop('checked', false);
-                break;
+    // TODO:(6) (Javascript) auto-enable all sub-checkboxes when either 'All users' or 'All project' options is selected and disable parent when a child option is disabled -->
+    //! FIXME: function should check/uncheck all elements when all is checked/unchecked
+        function beforeSubmit(element){
+            var myform = document.search_form;
+
+            // if(element == document.uall)){
+            //     if(element.checked){
+            //         document.findElementById('ostu').setAttribute('checked', 'checked');
+            //         document.findElementById('olec').setAttribute('checked', 'checked');
+            //     }
+            //     else{
+            //         document.findElementById('ostu').setAttribute('checked', 'unchecked');
+            //         document.findElementById('olec').setAttribute('checked', 'unchecked');
+            //     }
+            // }
+            // stu.checked = true;
+            // var ck_all_users = document.uall;
+            // var ck_all_projects = document.pall;
+            // if(ck_all_users.checked){
+            //     document.ostu.setAttribute('checked', 'checked');
+            //     document.olec.setAttribute('checked', 'checked');
+            //     // document.ostu.checked = 'checked';
+            //     // document.olec.checked = 'checked';
+            // }
+            myform.submit();
         }
-        document.search_form.submit();
-    }
-    function beforeWSubmit(element){
-        var name = element.name;
-        switch (name) {
-            case 'pall':
-                if(element.checked){
-                    $('#osrp').prop('checked', true);
-                    $('#oprj').prop('checked', true);
-                    $('#ores').prop('checked', true);
-                    $('#oid').prop('checked', true);
-                }else{
-                    $('#osrp').prop('checked', false);
-                    $('#oprj').prop('checked', false);
-                    $('#ores').prop('checked', false);
-                    $('#oid').prop('checked', false);
-                }
-                break;
-            default:
-                var allChecked =    $("#osrp").prop('checked') &&
-                                    $("#oprj").prop('checked') &&
-                                    $("#ores").prop('checked') &&
-                                    $("#oid").prop('checked');
-                if(allChecked) $('#pall').prop('checked', true);
-                else $('#pall').prop('checked', false);
-                break;
-        }
-        document.search_form.submit();
-    }
-</script>
+    </script>
 </head>
 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" name="search_form" id="search_form" method="get">
     <input type="text" name="search" id="search" placeholder="Search" <?php
          if(isset($_GET['search'])) echo 'value="'.$_GET['search'].'"'; ?>>
     <button type="submit">Search</button></br>
-    <input type="checkbox" name="uall" id="uall" onChange="beforeUSubmit(this)"<?php
+    <input type="checkbox" name="uall" id="uall" value="all users" onChange="beforeSubmit(this)"<?php
          if(isset($_GET['uall'])) echo 'checked="checked"'; ?>><b><i>All users</i></b>
-    <fieldset id="checkUOptions">
-        <input type="checkbox" name="ostu" id="ostu" value="Students" onChange="beforeUSubmit(this)"<?php
-            if(isset($_GET['ostu'])) echo 'checked="checked"'; ?>>Students
-        <input type="checkbox" name="olec" id="olec" value="Lecturers" onChange="beforeUSubmit(this)"<?php
-            if(isset($_GET['olec'])) echo 'checked="checked"'; ?>>Lecturers
-    </fieldset>
-    <input type="checkbox" name="pall" id="pall" onChange="beforeWSubmit(this)"<?php
+    <input type="checkbox" name="ostu" id="ostu" value="STUDENTS" onChange="beforeSubmit(this)"<?php
+         if(isset($_GET['ostu'])) echo 'checked="checked"'; ?>>Students
+    <input type="checkbox" name="olec" id="olec" value="LECTURERS" onChange="beforeSubmit(this)"<?php
+         if(isset($_GET['olec'])) echo 'checked="checked"'; ?>>Lecturers</br>
+    <input type="checkbox" name="pall" id="pall" value="all project" onChange="beforeSubmit(this)"<?php
          if(isset($_GET['pall'])) echo 'checked="checked"'; ?>><b><i>All projects</i></b>
-    <fieldset id="checkWOptions">
-        <input type="checkbox" name="osrp" id="osrp" value="Senior Project" onChange="beforeWSubmit(this)"<?php
-            if(isset($_GET['osrp'])) echo 'checked="checked"'; ?>>Senior Projects
-        <input type="checkbox" name="oprj" id="oprj" value="Project" onChange="beforeWSubmit(this)"<?php
-            if(isset($_GET['oprj'])) echo 'checked="checked"'; ?>>Projects
-        <input type="checkbox" name="ores" id="ores" value="Research" onChange="beforeWSubmit(this)"<?php
-            if(isset($_GET['ores'])) echo 'checked="checked"'; ?>>Researches
-        <input type="checkbox" name="oid" id="oid" value="Idea" onChange="beforeWSubmit(this)"<?php
-            if(isset($_GET['oid'])) echo 'checked="checked"'; ?>>Ideas
-    </fieldset>
+    <input type="checkbox" name="osrp" id="osrp" value="Senior Project" onChange="beforeSubmit(this)"<?php
+         if(isset($_GET['osrp'])) echo 'checked="checked"'; ?>>Senior Projects
+    <input type="checkbox" name="oprj" id="oprj" value="Project" onChange="beforeSubmit(this)"<?php
+         if(isset($_GET['oprj'])) echo 'checked="checked"'; ?>>Projects
+    <input type="checkbox" name="ores" id="ores" value="Research" onChange="beforeSubmit(this)"<?php
+         if(isset($_GET['ores'])) echo 'checked="checked"'; ?>>Researches
+    <input type="checkbox" name="oid" id="oid" value="Idea" onChange="beforeSubmit(this)"<?php
+         if(isset($_GET['oid'])) echo 'checked="checked"'; ?>>Ideas</br>
 </form>
 <?php
     if(isset($_GET['search']) && $_GET['search'] != ''){

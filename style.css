@@ -6,7 +6,9 @@ Author: Richard Clark - http://richclarkdesign.com
 Twitter: @rich_clark
 */
 
-html, body, div, span, object, iframe,
+
+
+html, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,
 del, dfn, em, img, ins, kbd, q, samp,
@@ -29,6 +31,7 @@ time, mark, audio, video {
 
 body {
     line-height:1;
+    margin: inherit;
 }
 
 article,aside,details,figcaption,figure,
@@ -105,14 +108,15 @@ input, select {
 /* my sytle*/
 
 .error_message{
-	color: rgb(228, 29, 29);
+    color: rgb(228, 29, 29);
 }
 .success_message{
-	color: rgb(33, 138, 33);
+    color: rgb(33, 138, 33);
 }
 .main-wrapper {
     margin: 0 auto;
     width: 1000px;
+    margin: 0 30%;
 }
 
 a {
@@ -120,13 +124,16 @@ a {
 }
 
 body {
-    background-color: rgb(150, 170, 180);
+    background-color: #E8E8E8;
 }
 
 header nav {
     width: 100%;
-    height: 60px;
-    background-color: #fff;
+    height: 75px;
+    background-color: #02264D;
+    padding: 15px 0px;
+    position: fixed;
+
 }
 
 header nav ul {
@@ -136,14 +143,22 @@ header nav ul {
 header nav ul li {
     float: left;
     list-style: none;
+    margin-left: 28px;
+
+}
+header nav ul li:hover {
+    border-bottom: 1px solid #DAA520;
+
 }
 
 header nav ul li a {
     font-family: arial;
     font-size: 16px;
-    color: #111;
+    color: #fff;
     line-height: 63px;
+    display: block;
 }
+
 
 header .nav-login {
     float: right;
@@ -156,33 +171,46 @@ header .nav-login form {
 
 header .nav-login form input {
     float: left;
-    width: 140px;
-    height: 30px;
+    width: 300px;
+    height: 47px;
+    border-radius: 25px;
     padding: 0px 10px;
     margin-right: 10px;
     border: none;
-    background-color: #ccc;
+    background-color: #fff;
     font-family: arial;
-    font-size: 14px;
+    font-size: 19px;
     color: #111;
     line-height: 30px;
+}
+header .nav-login form input:focus{
+    outline: 0;
+
 }
 
 header .nav-login form button {
     float: left;
-    width: 60px;
-    height: 30px;
+    width: 90px;
+    height: 47px;
     margin-right: 10px;
-    border: none;
-    background-color: #f3f3f3;
+    border: 3px solid white;
+    background-color: #02264d;
     font-family: arial;
-    font-size: 14px;
-    color: #111;
+    font-size: 18px;
+    color: white;
     cursor: pointer;
+    border-radius: 25px;
+    transition-duration: 0.4s;
+    font-weight: 500;
 }
 
 header .nav-login form button:hover {
-    background-color: #ccc;
+   color: #DAA520;
+    border-color: #DAA520;
+    background-color: white;
+}
+header .nav-login form button:focus{
+    outline: 0;
 }
 
 header .nav-login a, header .nav-login label {
@@ -190,15 +218,16 @@ header .nav-login a, header .nav-login label {
     height: 60px;
     border: none;
     float: left;
-    background-color: #fff;
+    background-color: #02264D;
     font-family: arial;
     font-size: 16px;
-    color: #111;
+    color: #fff;
     line-height: 63px;
     cursor: pointer;
 }
 .main-container {
     padding-top: 40px;
+    background-color: #E8E8E8;
 }
 
 .main-container h1 {
@@ -207,6 +236,10 @@ header .nav-login a, header .nav-login label {
     color: #111;
     line-height: 50px;
     text-align: center;
+    margin-top:  120px;
+}
+.form-wrapper{
+    margin-right: 30%;
 }
 .img-circle {
     border-radius: 50%;
@@ -215,18 +248,61 @@ header .nav-login a, header .nav-login label {
     padding: 5% 0px;
     float: left;
 }
+.main-wrapper img{
+    width: 40%;
+    margin-left: -57%;
+}
+.container-input{
+    margin-top: 22px;
+}
+
+
+.landingpage{
+    height: 100%;
+    background-image: linear-gradient(rgba(4,39,76, 0.5),rgba(4,39,76, -0.5)),url(_css_images/landing_page_bckgnd.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+/* landing page text*/
+.landingpage-text{
+    text-align: center;
+    padding: 17%;
+    color: white;
+    width: 67%;
+}
+.landingpage-text span{
+    color:  #DAA520;
+}
+
+section h1,h2 {
+  font-weight: 200;
+  margin: 0.4em 0;
+}
+section h1 { font-size: 3.5em; }
+section h2 {
+  font-size: 2em;
+}
 
 /* signup.php*/
 
 .signup-form, .login-form{
     width: 400px;
     margin: 0 auto;
-    padding-top: 30px;
+    border: 0 solid #02264d;
+    padding: 30px 44px;
+    border-radius: 15px;
+    height: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    background-color: white;
+
 }
 .signup-form input, .login-form input{
     width: 90%;
     height: 40px;
-    padding: 0px 5%;
+    padding: 10px 0 10 20px;
     margin-bottom: 4px;
     border: none;
     background-color: #fff;
@@ -235,43 +311,56 @@ header .nav-login a, header .nav-login label {
     color: #111;
     line-height: 40px;
 }
+.signup-form input, .login-form input:focus{
+    outline-color: #DAA520;
+}
+
 
 .signup-form button, .signup-option button, .login-form button{
     display: block;
-    margin: 0 auto;
+    margin: 120px auto;
     width: 30%;
     height: 40px;
     border: none;
-    background-color: #222;
+    background-color: #02264d;
     font-family: arial;
     font-size: 16px;
     color: #fff;
     cursor: pointer;
+    border-radius: 30px;
+    transition-duration: 0.4s;
+
 }
 
 .signup-form button:hover, .signup-option button:hover, .login-form button:hover{
-    background-color: #111;
+    background-color: #fff;
+    color: #02264d;
+    border:2px solid #02264d;
+    outline: 0;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .select-style {
     width: 90%;
     height: 40px;
-    padding: 0px 5%;
-	margin-bottom: 4px;
+    margin-bottom: 4px;
     font-family: arial;
     font-size: 16px;
     border: none;
     background-color: #fff;
     line-height: 40px;
     margin-bottom: 4px;
+    padding-left: 3%;
+
 }
 .select-style select {
     width: 100%;
     height: 40px;
     border: none;
     font-family: arial;
-	font-size: 16px;
+    font-size: 16px;
     box-shadow: none;
     background: transparent;
+    margin-left: 20px;
 }
 
 .select-style select:focus {
@@ -280,7 +369,7 @@ header .nav-login a, header .nav-login label {
 .signup-option{
     width: 400px;
     margin: 0 auto;
-    padding-top: 30px;
+    padding-top: 15%;
     font-family: arial;
     font-size: 16px;
 }

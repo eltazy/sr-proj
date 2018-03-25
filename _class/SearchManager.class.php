@@ -23,12 +23,12 @@ class SearchManager{
         $results = array();
         
         $res_lecturers = new Collection(new SearchResult(array()), 'Lecturer');
-        if(in_array('Lecturers', $search->userOptions())){
+        if(in_array('LECTURERS', $search->userOptions())){
             $res_lecturers = $this->searchLecturers($search->str());
             array_push($results, $res_lecturers);
         }
         $res_students = new Collection(new SearchResult(array()), 'Student');
-        if(in_array('Students', $search->userOptions())){
+        if(in_array('STUDENTS', $search->userOptions())){
             $res_students = $this->searchStudents($search->str());
             array_push($results, $res_students);
         }
