@@ -50,8 +50,8 @@
                                 </form>';
                     }
                     else echo ' <ul>
-                                    <li><a href="./login.php">Login</a></li>
-                                    <li><a href="./signup.php">Signup</a></li>
+                                    <li><a href="./login.php">Log In</a></li>
+                                    <li><a href="./signup.php">Sign Up</a></li>
                                 </ul> ';
                 ?>
             </div>

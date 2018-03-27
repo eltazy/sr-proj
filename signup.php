@@ -99,7 +99,7 @@
 		if(isset($_POST['type'])){ ?>
 		<head>
 			<meta charset="utf-8" />
-			<!-- <link rel="stylesheet" href="style.css" /> -->
+			<link rel="stylesheet" href="style.css" />
 			<title>Sign Up!</title>
 		</head>
 		<body>
@@ -130,10 +130,10 @@
 						</div>
 						<input type="text" name="schoolid" required placeholder="School ID" value="<?php if(isset($_POST['schoolid'])) $_POST['schoolid'];?>" />
 						<?php } ?>
-						<input type="Email" name="email" required placeholder="Email@ueab.ac.ke" value="<?php if(isset($_POST['email'])) $_POST['email'];?>"/>
+						<input type="Email" name="email" required placeholder="email@ueab.ac.ke" value="<?php if(isset($_POST['email'])) $_POST['email'];?>"/>
 						<input type="Password" required placeholder="Password" name="firstpasswd" id="firstpasswd"/>
 						<input type="Password" required placeholder="Re-enter Password" name="reenterpasswd" id="reenterpasswd"/>
-						<button type="submit" name="submit_signup" id="submit_signup">Let's Go!</button>
+						<button type="submit" name="submit_signup" id="submit_signup">Let's Start!</button>
 
 						</div>
 					</form>
@@ -143,11 +143,18 @@
 			<script src="../_js/signup.js"></script>
 		</body><?php
 		}
-		else echo	'<form class="signup-option" method="post" action="'.$_SERVER["PHP_SELF"].'">
-						<label><b>User type:</b></label></br>
-						<input type="radio" name="type" value="Student"> Student<br>
-						<input type="radio" name="type" value="Lecturer"> Lecturer<br>
-						<button type="submit" name="submit">Sign Up!</button>
+		else echo	'
+
+			
+			<form class="signup-option" method="post" action="'.$_SERVER["PHP_SELF"].'">							
+						<h1>User type</h1>
+						<div class="container-input-signup">
+							<div class="radio-container" style="font-size: 1.2em;">
+								<input type="radio" name="type" value="Student" style="margin: 0% 5% 0% -0.5%;">Student</br></br>
+								<input type="radio" name="type" value="Lecturer" style="margin: 0% 5% 0% 0%;;">Lecturer
+							</div>	
+							<button type="submit" name="submit" style="margin: 65px auto;">Continue</button>
+						</div>
 					</form>';
 	}
 ?>

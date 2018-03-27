@@ -27,11 +27,15 @@ time, mark, audio, video {
     font-size:100%;
     vertical-align:baseline;
     background:transparent;
+    font-family: arial;
+
+
 }
 
 body {
     line-height:1;
     margin: inherit;
+    background-color: #E8E8E8;
 }
 
 article,aside,details,figcaption,figure,
@@ -100,18 +104,19 @@ hr {
     padding:0;
 }
 
-input, select {
-    vertical-align:middle;
-}
 
 
 /* my sytle*/
 
 .error_message{
     color: rgb(228, 29, 29);
+    font-family: arial;
+    margin: 2% 23%;
 }
 .success_message{
     color: rgb(33, 138, 33);
+    font-family: arial;
+    margin: 2% 23%;
 }
 .main-wrapper {
     margin: 0 auto;
@@ -122,6 +127,7 @@ input, select {
 a {
     text-decoration: none;
 }
+
 
 body {
     background-color: #E8E8E8;
@@ -238,6 +244,8 @@ header .nav-login a, header .nav-login label {
     text-align: center;
     margin-top:  120px;
 }
+        
+
 .form-wrapper{
     margin-right: 30%;
 }
@@ -252,8 +260,19 @@ header .nav-login a, header .nav-login label {
     width: 40%;
     margin-left: -57%;
 }
-.container-input{
-    margin-top: 22px;
+.container-input-signup{
+    width: 400px;
+    margin: 3% -10%;
+    border: 0 solid #02264d;
+    padding: 60px 44px;
+    border-radius: 15px;
+    height: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    background-color: white;
+}
+.radio-container input{
+    margin: 0% 5%;
 }
 
 
@@ -274,13 +293,18 @@ header .nav-login a, header .nav-login label {
 }
 .landingpage-text span{
     color:  #DAA520;
+    font-family: serif;
 }
 
 section h1,h2 {
-  font-weight: 200;
-  margin: 0.4em 0;
+    font-weight: 200;
+    margin: 0.4em 0;
+    font-family: serif;
+
 }
-section h1 { font-size: 3.5em; }
+section h1 { 
+    font-size: 3.5em; 
+}
 section h2 {
   font-size: 2em;
 }
@@ -291,7 +315,7 @@ section h2 {
     width: 400px;
     margin: 0 auto;
     border: 0 solid #02264d;
-    padding: 30px 44px;
+    padding: 55px 44px 10px 44px;
     border-radius: 15px;
     height: 600px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -373,16 +397,17 @@ section h2 {
     font-family: arial;
     font-size: 16px;
 }
-.signup-option input,
-.signup-option label{
-    width: 5%;
-    height: 40px;
-    padding: 0px 5%;
-    margin-bottom: 4px;
-    border: none;
+.signup-option h1{
+    font-family: arial;
+    font-size: 28px;
     color: #111;
-    line-height: 40px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 100;
+    margin-top: -22%;
 }
+
+
 /* login.php*/
 
 /* profile.php*/
@@ -426,4 +451,16 @@ section h2 {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+}
+.login-support{
+    margin: 5% 10%;
+    font-size: 1.2em;
+}
+.login-support a{
+    color: black;
+    margin-left: 10%;
+    text-decoration: underline;
+}
+.login-support a:hover{
+    color: #DAA520;
 }

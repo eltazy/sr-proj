@@ -4,6 +4,8 @@
 	include_once '_class/StudentManager.class.php';
 	include_once '_class/LecturerManager.class.php';
 	include_once '_class/AuthenticationManager.class.php';
+
+	include '_pages/header.php';
 	
 	if(isset($_SESSION['repsyst_session_username'])){
 		header("Location: index.php");
@@ -13,13 +15,13 @@
 <head>
 	<meta charset="utf-8" />
 	<!-- TODO:(7) (CSS) Change styling in style.css then uncomment next line-->
-	<!-- <link rel="stylesheet" href="style.css" /> -->
+	<link rel="stylesheet" href="style.css" 
 	<title>Login</title>
 </head>
 
 <section class="main-container">
 	<div class="main-wrapper">
-		<h1>Login</h1>
+		<h1 style="margin-right: 30%;">Login</h1>
 <?php
 			if(isset($_POST['submit_login'])){
 				unset($_GET['login']);
@@ -76,13 +78,23 @@
 					}
 				}
 				//show login form
-				echo	'		<form class "login-form" method="post" action="'.$_SERVER["PHP_SELF"].'">
+
+				echo	'		
+
+
+
+				<form class="login-form" method="post" style="margin: 1% 10%;height: 215px;"action="'.$_SERVER["PHP_SELF"].'">
+
+				<div class="container-input">
 									<input type="text" name="username" placeholder="Username"/><br/>
 									<input type="Password" name="password" placeholder="Password"/><br/>
-									<button type="submit" name="submit_login">Log in now!</button>
+									<button type="submit" name="submit_login" style="margin: 40px auto;">Log In</button>
+									</div>
 								</form>
-								<a href="signup.php">or Sign up</a><br/>
-								<a href="forgot_password.php">Forgot password?</a>
+								<div class="login-support">
+								<a class="sign-up" href="signup.php">Sign up</a>
+								<a class="forgot" href="forgot_password.php">Forgotten Password?</a>
+								</div>
 							</div>
 						</section>';
 			}
