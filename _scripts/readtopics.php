@@ -6,11 +6,11 @@
         $quest = $database->prepare("SELECT * FROM topics WHERE topic REGEXP '$str'");
         $quest->execute();
         $result = $quest->fetchAll();
-        echo '<ul id="users">';
+        echo '<div class="list-group" id="users">';
         
-        if(empty($result)) echo "<li onClick=\"selectTopic('".$str."');\">+ Add '".$str."' as new topic</li>";
+        if(empty($result)) echo "<a class=\"list-group-item list-group-item-action list-group-item-warning\" onClick=\"selectTopic('".$str."');\">+ Add \"".$str."\"    as new topic</a>";
         foreach($result as $topic)
-            echo "<li onClick=\"selectTopic('".$topic['topic']."')\";>".$topic['topic'].'</li>';
-        echo '</ul>';
+            echo "<a class=\"list-group-item list-group-item-action list-group-item-info\" onClick=\"selectTopic('".$topic['topic']."')\";>".$topic['topic'].'</a>';
+        echo '</div>';
     }
 ?>

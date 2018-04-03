@@ -17,7 +17,7 @@ abstract class UserAbstraction{
         $this->setHasprojects(0);
     }
     public function __toString(){
-        return  '<h1><a href="http://localhost/sr-proj/profile.php?user='.$this->username().'&type='.$this->type().'">'.$this->fullname().'</a></h1>
+        return  '<h3><a href="http://localhost/sr-proj/profile.php?user='.$this->username().'&type='.$this->type().'">'.$this->fullname().'</a></h3>
                 <br>Gender: '.$this->gender().
                 '<br>Username: @'.$this->username();
     }

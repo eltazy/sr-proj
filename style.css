@@ -1,340 +1,49 @@
-/* 
-html5doctor.com Reset Stylesheet
-v1.6.1
-Last Updated: 2010-09-17
-Author: Richard Clark - http://richclarkdesign.com 
-Twitter: @rich_clark
-*/
-
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
-del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var,
-b, i,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {
-    margin:0;
-    padding:0;
-    border:0;
-    outline:0;
-    font-size:100%;
-    vertical-align:baseline;
-    background:transparent;
+:root {
+    --theme_color: rgb(58, 161, 245);
 }
 
-body {
-    line-height:1;
-}
-
-article,aside,details,figcaption,figure,
-footer,header,hgroup,menu,nav,section { 
-    display:block;
-}
-
-nav ul {
-    list-style:none;
-}
-
-blockquote, q {
-    quotes:none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content:'';
-    content:none;
-}
-
-a {
-    margin:0;
-    padding:0;
-    font-size:100%;
-    vertical-align:baseline;
-    background:transparent;
-}
-
-/* change colours to suit your needs */
-ins {
-    background-color:#ff9;
-    color:#000;
-    text-decoration:none;
-}
-
-/* change colours to suit your needs */
-mark {
-    background-color:#ff9;
-    color:#000; 
-    font-style:italic;
-    font-weight:bold;
-}
-
-del {
-    text-decoration: line-through;
-}
-
-abbr[title], dfn[title] {
-    border-bottom:1px dotted;
-    cursor:help;
-}
-
-table {
-    border-collapse:collapse;
-    border-spacing:0;
-}
-
-/* change border colour to suit your needs */
-hr {
-    display:block;
-    height:1px;
-    border:0;   
-    border-top:1px solid #cccccc;
-    margin:1em 0;
-    padding:0;
-}
-
-input, select {
-    vertical-align:middle;
-}
-
-
-/* my sytle*/
-
-.error_message{
+/* Error messages color */
+.error_message {
 	color: rgb(228, 29, 29);
 }
-.success_message{
-	color: rgb(33, 138, 33);
+.success_message {
+	color: rgb(11, 121, 11);
 }
-.main-wrapper {
-    margin: 0 auto;
-    width: 1000px;
-}
-
-a {
-    text-decoration: none;
-}
-
+/* Header design */
 body {
-    background-color: rgb(150, 170, 180);
+    padding-top: 70px;
 }
-
-header nav {
-    width: 100%;
-    height: 60px;
-    background-color: #fff;
-}
-
-header nav ul {
-    float: left;
-}
-
-header nav ul li {
-    float: left;
-    list-style: none;
-}
-
-header nav ul li a {
-    font-family: arial;
-    font-size: 16px;
-    color: #111;
-    line-height: 63px;
-}
-
-header .nav-login {
-    float: right;
-}
-
-header .nav-login form {
-    float: left;
+#navheader {
+    background-color: var(--theme_color);
     padding-top: 15px;
+    padding-bottom: 15px;
 }
-
-header .nav-login form input {
-    float: left;
-    width: 140px;
-    height: 30px;
-    padding: 0px 10px;
-    margin-right: 10px;
-    border: none;
-    background-color: #ccc;
-    font-family: arial;
-    font-size: 14px;
-    color: #111;
-    line-height: 30px;
+#menuItem {
+    padding-left: 5px;
+    padding-right: 5px;
 }
-
-header .nav-login form button {
-    float: left;
-    width: 60px;
-    height: 30px;
-    margin-right: 10px;
-    border: none;
-    background-color: #f3f3f3;
-    font-family: arial;
-    font-size: 14px;
-    color: #111;
-    cursor: pointer;
-}
-
-header .nav-login form button:hover {
-    background-color: #ccc;
-}
-
-header .nav-login a, header .nav-login label {
-    display: block;
-    height: 60px;
-    border: none;
-    float: left;
-    background-color: #fff;
-    font-family: arial;
-    font-size: 16px;
-    color: #111;
-    line-height: 63px;
-    cursor: pointer;
-}
-.main-container {
-    padding-top: 40px;
-}
-
-.main-container h1 {
-    font-family: arial;
-    font-size: 28px;
-    color: #111;
-    line-height: 50px;
+#searchOptions {
+    padding-top: 25px;
     text-align: center;
 }
-.img-circle {
-    border-radius: 50%;
-    width: 45px;
-    height: 70%;
-    padding: 5% 0px;
-    float: left;
+#loginForm {
+    padding-top: 100px;
+    text-align: center;
 }
-
-/* signup.php*/
-
-.signup-form, .login-form{
-    width: 400px;
-    margin: 0 auto;
-    padding-top: 30px;
+.dropdown-toggle:active +li.a:hover {
+    /* color: var(--theme_color); */
+    color: yellow;
 }
-.signup-form input, .login-form input{
-    width: 90%;
-    height: 40px;
-    padding: 0px 5%;
-    margin-bottom: 4px;
-    border: none;
-    background-color: #fff;
-    font-family: arial;
-    font-size: 16px;
-    color: #111;
-    line-height: 40px;
+/* .uneditable-input:focus {   
+  border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+} */
+#icons {
+    padding-left: 20px;
 }
-
-.signup-form button, .signup-option button, .login-form button{
-    display: block;
-    margin: 0 auto;
-    width: 30%;
-    height: 40px;
-    border: none;
-    background-color: #222;
-    font-family: arial;
-    font-size: 16px;
-    color: #fff;
-    cursor: pointer;
-}
-
-.signup-form button:hover, .signup-option button:hover, .login-form button:hover{
-    background-color: #111;
-}
-.select-style {
-    width: 90%;
-    height: 40px;
-    padding: 0px 5%;
-	margin-bottom: 4px;
-    font-family: arial;
-    font-size: 16px;
-    border: none;
-    background-color: #fff;
-    line-height: 40px;
-    margin-bottom: 4px;
-}
-.select-style select {
-    width: 100%;
-    height: 40px;
-    border: none;
-    font-family: arial;
-	font-size: 16px;
-    box-shadow: none;
-    background: transparent;
-}
-
-.select-style select:focus {
-    outline: none;
-}
-.signup-option{
-    width: 400px;
-    margin: 0 auto;
-    padding-top: 30px;
-    font-family: arial;
-    font-size: 16px;
-}
-.signup-option input,
-.signup-option label{
-    width: 5%;
-    height: 40px;
-    padding: 0px 5%;
-    margin-bottom: 4px;
-    border: none;
-    color: #111;
-    line-height: 40px;
-}
-/* login.php*/
-
-/* profile.php*/
-
-.img-profile {
-    border-radius: 50%;
-    width: 200px;
-    height: 180px;
-}
-/* Style the tab */
-.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-    background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-    background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+#pagefooter {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background: var(--theme_color);
 }

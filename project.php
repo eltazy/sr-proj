@@ -23,45 +23,60 @@
         $keywords = explode(';', $project->keywords());
         $postedby = $project->postedby();
         // $documents = explode(';', $project->docs());
-        
-        echo    '<h1>'.$project->title().'</h1>
-                <p>'.$project->description().'</p></br>
-                Links: ';
-                    $temp = '';
-                    foreach ($links as $link)
-                        $temp = $temp.'<a href="'.$link.'" target="_blank">'.$link.'</a>; ';
-                    echo substr($temp, 0, -2).'</br>';
-        echo    'Posted by: ';
-                    if(LecturerManager::lecturerExists($postedby, $database))
-                        echo '<a href="http://localhost/sr-proj/profile.php?user='.$postedby.'&type=Lecturer">'.LecturerManager::getFullname($postedby, $database).'</a></br>';
-                    else
-                        echo '<a href="http://localhost/sr-proj/profile.php?user='.$postedby.'&type=Student">'.StudentManager::getFullname($postedby, $database).'</a></br>';
+        ?>
+        <body>
+        <div class="container-fluid">
+            <div class="row" style="padding-top: 25px"><div class="col-md-offset-2 col-md-8">
+                <h1><?= $project->title() ?></h1></br>
+            </div></div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-4">
+                    <p><?= $project->description() ?></p>
+                </div>
+                <div class="col-md-offset-3 col-md-3">
+                        <label>Links: </label>
+                        <?php
+                            $temp = '';
+                            foreach ($links as $link)
+                                $temp = $temp.'<a href="'.$link.'" target="_blank">'.$link.'</a>; ';
+                            echo substr($temp, 0, -2).'<br>';
+                echo    '<label>Posted by:</label> ';
+                            if(LecturerManager::lecturerExists($postedby, $database))
+                                echo '<a href="http://localhost/sr-proj/profile.php?user='.$postedby.'&type=Lecturer">'.LecturerManager::getFullname($postedby, $database).'</a></br>';
+                            else
+                                echo '<a href="http://localhost/sr-proj/profile.php?user='.$postedby.'&type=Student">'.StudentManager::getFullname($postedby, $database).'</a></br>';
 
-        echo    'Authors: ';
-                    $temp = '';
-                    foreach ($authors as $uname){
-                        if(LecturerManager::lecturerExists($uname, $database))
-                            $temp = $temp.'<a href="http://localhost/sr-proj/profile.php?user='.$uname.'&type=Lecturer">'.LecturerManager::getFullname($uname, $database).'</a>; ';
-                        else
-                            $temp = $temp.'<a href="http://localhost/sr-proj/profile.php?user='.$uname.'&type=Student">'.StudentManager::getFullname($uname, $database).'</a>; ';
-                    }
-                    echo substr($temp, 0, -2).'<br>';
-        echo    'Created on '.
-                    $project->creationdate().'</br>
-                State: '.
-                    $project->state().'</br>
-                Type: '.
-                    $project->type().'</br>
-                Keywords: ';
-                    foreach ($keywords as $key)
-                        echo '<u><a href="http://localhost/sr-proj/topic.php?title='.$key.'">'.$key.'</a></u> ';
-        // echo    '</br>Documents: ';
-        //             $temp = '';
-        //             foreach ($documents as $doc)
-        //                 $temp = $temp.'<a href="./_uploads/_documents/AB8CE9F1D6DF.docx" target="_blank" download>download</a>; ';
-        //             echo substr($temp, 0, -2).'</br>';
-        if($postedby == $_SESSION['repsyst_session_username'])
-            echo '<a href="http://localhost/sr-proj/update_project.php?uid='.$uid.'">Update Project</a>';
-	}
-	else header("Location: index.php");
-?>
+                echo    '<label>Authors:</label> ';
+                            $temp = '';
+                            foreach ($authors as $uname){
+                                if(LecturerManager::lecturerExists($uname, $database))
+                                    $temp = $temp.'<a href="http://localhost/sr-proj/profile.php?user='.$uname.'&type=Lecturer">'.LecturerManager::getFullname($uname, $database).'</a>; ';
+                                else
+                                    $temp = $temp.'<a href="http://localhost/sr-proj/profile.php?user='.$uname.'&type=Student">'.StudentManager::getFullname($uname, $database).'</a>; ';
+                            }
+                            echo substr($temp, 0, -2).'<br>';
+                echo    '<label>Created on</label> '.
+                            $project->creationdate().'</br>
+                        <label>State:</label> '.
+                            $project->state().'</br>
+                        <label>Type:</label> '.
+                            $project->type().'</br>
+                        <label>Keywords:</label> ';
+                            foreach ($keywords as $key)
+                                echo '<u><a href="http://localhost/sr-proj/topic.php?title='.$key.'">'.$key.'</a></u> ';
+                // echo    '</br>Documents: ';
+                //             $temp = '';
+                //             foreach ($documents as $doc)
+                //                 $temp = $temp.'<a href="./_uploads/_documents/AB8CE9F1D6DF.docx" target="_blank" download>download</a>; ';
+                //             echo substr($temp, 0, -2).'</br>';
+                if($postedby == $_SESSION['repsyst_session_username'])
+                    echo '<a href="http://localhost/sr-proj/update_project.php?uid='.$uid.'">Update Project</a>';?>
+        
+            </div>
+                </div>
+        </div>
+        </body><?php
+	    include_once '_pages/footer.php';
+    }
+    else header("Location: index.php");
+    ?>

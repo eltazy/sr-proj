@@ -37,25 +37,25 @@ class SearchManager{
     public function searchWorks(Search $search){
         $results = array();
 
-        $res_ideas = new Collection(new SearchResult(array()), 'Idea');
+        $temp_results = new Collection(new SearchResult(array()), 'Idea');
         if(in_array('Idea', $search->projectOptions())){
-            $res_ideas = $this->searchIdeas($search->str());
-            array_push($results, $res_ideas);
+            $temp_results = $this->searchIdeas($search->str());
+            array_push($results, $temp_results);
         }
-        $res_projects = new Collection(new SearchResult(array()), 'Project');
+        $temp_results = new Collection(new SearchResult(array()), 'Project');
         if(in_array('Project', $search->projectOptions())){
-            $res_projects = $this->searchProjects($search->str());
-            array_push($results, $res_projects);
+            $temp_results = $this->searchProjects($search->str());
+            array_push($results, $temp_results);
         }
-        $res_srproj = new Collection(new SearchResult(array()), 'SeniorProject');
+        $temp_results = new Collection(new SearchResult(array()), 'SeniorProject');
         if(in_array('Senior Project', $search->projectOptions())){
-            $res_srproj = $this->searchSeniorProjects($search->str());
-            array_push($results, $res_srproj);
+            $temp_results = $this->searchSeniorProjects($search->str());
+            array_push($results, $temp_results);
         }
-        $res_research = new Collection(new SearchResult(array()), 'Research');
+        $temp_results = new Collection(new SearchResult(array()), 'Research');
         if(in_array('Research', $search->projectOptions())){
-            $res_research = $this->searchResearches($search->str());
-            array_push($results, $res_research);
+            $temp_results = $this->searchResearches($search->str());
+            array_push($results, $temp_results);
         }
         return $results;
     }

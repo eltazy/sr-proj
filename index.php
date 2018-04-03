@@ -5,39 +5,46 @@
 	include_once '_class/TopicManager.class.php';
 
 	include_once '_pages/header.php';
+
 ?>
 <head>
 	<title>Home</title>
 </head>
 <body>
-	<!-- recently added projects -->
-	<article>
-		<header>Recent Projects</header>
-		<?php $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
-		$latest_projects = IdeaAbstractionManager::getLatestProjects($database);
-		// displaying latest projects
-		foreach ($latest_projects as $project){
-			$Constructor = str_replace(' ', '', $project['type']);
-			echo new $Constructor($project).'<hr>';
-		}?>
-	</article>
+		<div class="container-fluid">
+			<div class="row">
 
-	<!-- recent activity -->
-	<article>
-		<header>Recent Activity</header>
-		<?= include '_pages/recent_activity.php' ?>
-	</article>
+				<!-- recent activity -->
+				<div class="col-md-offset-1 col-md-8 offset-md-1">
+					<h1>Recent Activity</h1>
+					<?= include '_pages/recent_activity.php' ?>
 
-	<!-- popular topics -->
-	<aside>
-		<header>Popular Topics</header>
-		<?php $popular_topics = TopicManager::getPopularTopics($database);
-		// displaying topics
-		echo '<ul>';
-		foreach ($popular_topics as $topic)
-			echo new Topic($topic);
-			echo '<li><a href="http://localhost/sr-proj/topic.php?all">All topics</a></li>';
-		echo '</ul>';
-		?>
-	</aside>
+				<!-- recently added projects -->
+					<h1>Recent Projects</h1>
+					<?php $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+					$latest_projects = IdeaAbstractionManager::getLatestProjects($database);
+					// displaying latest projects
+					foreach ($latest_projects as $project){
+						$Constructor = str_replace(' ', '', $project['type']);
+						echo new $Constructor($project).'<hr>';
+					}?>
+				</div>
+
+				<!-- popular topics -->
+				<div class="col-xs-12 col-md-3" id="popular-topics">
+					<h3>Popular Topics</h3>
+					<?php $popular_topics = TopicManager::getPopularTopics($database);
+					// displaying topics
+					echo '<ul>';
+					foreach ($popular_topics as $topic)
+						echo '<li>'.new Topic($topic).'</li>';
+					echo '<li><a href="http://localhost/sr-proj/topic.php?all">All topics</a></li>';
+					echo '</ul>';
+					?>
+				</div>
+			</div>
+		</div>
+<?php 
+	include_once '_pages/footer.php';
+	?>
 </body>

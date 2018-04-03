@@ -23,7 +23,7 @@ class TopicManager{
         $response_data = $quest->fetch(PDO::FETCH_ASSOC);
         return new Topic($response_data);
     }
-    public static function getTopics($topic, $db){
+    public static function getTopics($db){
         $quest = $db->prepare("SELECT * FROM topics");
         $quest->execute();
         return $quest->fetchAll();

@@ -21,9 +21,5 @@ class Collection extends SearchResult{
         }
         parent::setResults($vec);
     }
-    // other methods
-    // public static function add(Collection $a, Collection $b){
-    //     return new Collection(array_merge($a->results(), $b->results()));
-    // }
 }
 ?>

@@ -1,4 +1,4 @@
 <!-- Footer -->
-<footer id="footer">
-	<p>Copyright moi, tous droits réservés</p>
-</footer>
+<div class="container-fluid" id="pagefooter">
+		<p>Copyright moi, tous droits réservés</p>
+</div>

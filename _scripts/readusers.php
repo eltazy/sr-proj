@@ -17,13 +17,13 @@
                                                                             OR username REGEXP '$str'");
         $quest->execute();
         $result = $quest->fetchAll();
-        echo '<ul id="users">';
-        if(empty($result)) echo "<li onClick=\"selectUser('nouser');\">No user</li>";
+        echo '<div class="list-group" id="users">';
+        if(empty($result)) echo "<a class=\"list-group-item list-group-item-action list-group-item-warning\" onClick=\"selectUser('nouser');\">No user</a>";
         foreach($result as $user){
             if(LecturerManager::lecturerExists($user['username'], $database))
-                echo "<li onClick=\"selectUser('".$user['username']."');\">".LecturerManager::getFullname($user['username'], $database).'</li>';
-            else echo "<li onClick=\"selectUser('".$user['username']."')\";>".StudentManager::getFullname($user['username'], $database).'</li>';
+                echo "<a class=\"list-group-item list-group-item-action list-group-item-info\" onClick=\"selectUser('".$user['username']."');\">".LecturerManager::getFullname($user['username'], $database).'</a>';
+            else echo "<a class=\"list-group-item list-group-item-action list-group-item-info\" onClick=\"selectUser('".$user['username']."')\";>".StudentManager::getFullname($user['username'], $database).'</a>';
         }
-        echo '</ul>';
+        echo '</div>';
 }
 ?>

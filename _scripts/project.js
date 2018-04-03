@@ -16,6 +16,9 @@ $(document).ready(function(){
             }
         });
     });
+    $("#topics").on("focusout", (function(){
+        $("#topic_suggestion_box").hide();        
+    }));
     $("#coauthors").keyup(function(){
         $.ajax({
             type: "POST",

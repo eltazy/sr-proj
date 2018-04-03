@@ -14,8 +14,8 @@ abstract class IdeaAbstraction{
     //toString and hydrate functions
     public function __toString(){
         $link = 'http://localhost/sr-proj/project.php?uid='.$this->uid();
-        $description_100_chars = strlen($this->description())>100 ? substr($this->description(), 0, 100) : $this->description();
-        return  '<h1><a href="'.$link.'">'.$this->title().'</a></h1>
+        $description_100_chars = strlen($this->description())>400 ? substr($this->description(), 0, 400) : $this->description();
+        return  '<h3><a href="'.$link.'">'.$this->title().'</a></h3>
                 <br><p>'.$description_100_chars.'...<a href="'.$link.'"><b><u>more</u></b></a></p>
                 <br><p>'.$this->keywords().'</p>';
     }
