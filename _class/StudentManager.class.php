@@ -38,12 +38,17 @@ class StudentManager{
         if($response_data) return new Student($response_data);
         return null;
     }
-    public function delete(Student $student){
-        $quest = $this->_db->prepare("DELETE FROM students_tb WHERE username = ?");
-        $quest->execute(array($student->username()));
+    public static function delete($str, $db){
+        $quest = $db->prepare("DELETE FROM students_tb WHERE username = ?");
+        $quest->execute(array($str));
     }
-    public function update(Student $student){
-        //instructions for changing db data values
+    public function update($user, $post_update){
+        $quest = $this->_db->prepare("  UPDATE students_tb SET
+                                        firstname = ?,
+                                        middlename = ?,
+                                        lastname = ?,
+                                        email = ? WHERE username = ?");
+        $quest->execute(array($post_update['p_firstname'], $post_update['p_middlename'], $post_update['p_lastname'], $post_update['p_email'], $user));
     }
     //methods for temporary database
     public function temp_add(Student $student, $id){

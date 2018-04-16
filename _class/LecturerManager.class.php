@@ -31,12 +31,13 @@ class LecturerManager{
         unset($response_data['email']);
         return new Lecturer($response_data);
     }
-    public function delete(Lecturer $lecturer){
-        $quest = $this->_db->prepare("DELETE FROM lecturers_tb WHERE username = ?");
-        $quest->execute(array($lecturer->username()));
+    public static function delete($str, $db){
+        $quest = $db->prepare("DELETE FROM lecturers_tb WHERE username = ?");
+        $quest->execute(array($str));
     }
-    public function update(Lecturer $lecturer){
-        //instructions for changing db data values
+    public function update($user, $fn, $sn, $ln, $e){
+        $quest = $this->_db->prepare("UPDATE lecturers_tb SET firstname=?, middlename=?, lastname=?, email=? WHERE username = ?");
+        $quest->execute(array($fn, $sn, $ln, $e, $user));
     }
     //methods for temporary database
     public function temp_add(Lecturer $lecturer, $id){

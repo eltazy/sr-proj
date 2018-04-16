@@ -27,8 +27,11 @@
 		$temp_StudentManager = new StudentManager($database);
 		$temp_user = $temp_StudentManager->get_from_email($email);
 		if($temp_user){
-			$message = 'Reset your password here: http://localhost/sr-proj/reset_password.php?u='.$temp_user->username();
-			mail($email, "Password Reset Link", $message);
+			$headers = "From: support@ueab.ac.ke \r\n";
+			$headers .= "Reply-To: no-reply@ueab.ac.ke \r\n";
+			$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+			$message = 'Reset your password <a href="http://localhost/sr-proj/reset_password.php?u="'.$temp_user->username().'>here</a>';
+			mail($email, "Password Reset Link", $message, $headers);
 			header("Location: forgot_password.php?message=success");
 		}
 		else header("Location: forgot_password.php?message=nouser");
@@ -39,4 +42,4 @@
 				</form>';
 ?>
 	</div>
-</section>
+</section><?php exit() ?>

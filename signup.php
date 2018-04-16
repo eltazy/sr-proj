@@ -4,18 +4,19 @@
 	include_once '_class/StudentManager.class.php';
 	include_once '_class/LecturerManager.class.php';
 	include_once '_class/AuthenticationManager.class.php';
+	include '_pages/header.php';
 ?>
 <head>
+	<title>Sign Up!</title>
     <script src="_scripts/jquery-3.3.1.min.js"></script>
 	<script src="_scripts/signup.js"></script>
 </head>
+<body>
+<!-- <body style="background-color: rgb(58, 161, 245);"> -->
+<div class="container-fluid" id="pagecontent">
 <?php
-	include '_pages/header.php';
 
-	if(isset($_SESSION['repsyst_session_username'])){
-		header("Location: index.php");
-		exit();
-	}
+	if(isset($_SESSION['repsyst_session_username'])) header("Location: index.php");
 	if(isset($_POST['submit_signup'])){
 		$database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
 		$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -100,51 +101,82 @@
 		   }
 		}
 		unset($_GET['signup']);
-		//checking type of user
-		if(isset($_POST['type'])){ ?>
-		<head>
-			<title>Sign Up!</title>
-		</head>
-		<body>
-			<section class="main-container">
-				<div class="main-wrapper">
-					<h1>Signup</h1>
-					<form class="signup-form" method="post" action="<?= $_SERVER["PHP_SELF"] ?>">
-						<input type="text" name="firstname" required placeholder="First Name" value="<?php if(isset($_POST['firstname'])) $_POST['firstname'];?>" /><br/>
-						<input type="text" name="middlename" placeholder= "Middle Name" value="<?php if(isset($_POST['middlename'])) $_POST['middlename'];?>" /><br/>
-						<input type="text" name="lastname" required placeholder="Last Name" value="<?php if(isset($_POST['lastname'])) $_POST['lastname'];?>" /><br/>
-						<div class="select-style">
-							<select name="gender" required placeholder="Last Name">
-								<option value="Select" disabled selected hidden>Gender</option>
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-							</select>
-						</div>
-						<?php if($_POST['type'] == 'Student'){ ?>
-						<div class="select-style">
-							<select name="major" required>
+		?>
+		
+		<div class="col-md-12 col-lg-12" id="signupForm">
+		<h1>Signup</h1>
+		<form class="form-signin" method="post" action="<?= $_SERVER["PHP_SELF"] ?>">					
+			<!-- firstname -->
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+					<input class="form-control" type="text" name="firstname" required placeholder="First Name" value="<?php if(isset($_POST['firstname'])) $_POST['firstname'];?>" /><br/>
+				</div>
+			</div>
+			<!-- middlename -->
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+					<input class="form-control" type="text" name="middlename" placeholder= "Middle Name" value="<?php if(isset($_POST['middlename'])) $_POST['middlename'];?>" /><br/>
+				</div>
+			</div>
+			<!-- lastname -->
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+					<input class="form-control" type="text" name="lastname" required placeholder="Last Name" value="<?php if(isset($_POST['lastname'])) $_POST['lastname'];?>" /><br/>
+				</div>
+			</div>
+			<!-- gender -->
+			<div class="row">
+				<div class="form-group">
+					<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+						<select class="form-control" name="gender" required placeholder="Last Name">
+							<option value="Select" disabled selected hidden>Gender</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+						</select><br/>
+					</div>
+				</div>
+			</div>
+			<!-- major -->
+			<div class="row">
+				<div class="form-group">
+					<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+							<select class="form-control" name="major" required>
 								<option value="Select" disabled selected hidden>Major</option>
 								<option value="SWEN">Software Engineering</option>
 								<option value="NETW">Networking</option>
 								<option value="BBIT">Business Information Technology</option>
-							</select>
-						</div>
-						<input type="text" name="schoolid" required placeholder="School ID" value="<?php if(isset($_POST['schoolid'])) $_POST['schoolid'];?>" />
-						<?php } ?>
-						<input type="Email" name="email" required placeholder="Email@ueab.ac.ke" value="<?php if(isset($_POST['email'])) $_POST['email'];?>"/>
-						<input type="Password" required placeholder="Password" name="firstpasswd" id="firstpasswd"/>
-						<input type="Password" required placeholder="Re-enter Password" name="reenterpasswd" id="reenterpasswd" disabled/>
-						<button type="submit" name="submit_signup" id="submit_signup" disabled>Sign Up</button>
-					</form>
+							</select><br/>
+					</div>
 				</div>
-			</section>
-		</body><?php
-		}
-		else echo	'<form class="signup-option" method="post" action="'.$_SERVER["PHP_SELF"].'">
-						<label><b>User type:</b></label></br>
-						<input type="radio" name="type" value="Student"> Student<br>
-						<input type="radio" name="type" value="Lecturer"> Lecturer<br>
-						<button type="submit" name="submit">Sign Up!</button>
-					</form>';
-	}
-?>
+			</div>
+			<!-- school id -->
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+					<input class="form-control" type="text" name="schoolid" required placeholder="School ID" value="<?php if(isset($_POST['schoolid'])) $_POST['schoolid'];?>" /><br/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+					<input class="form-control" type="Email" name="email" required placeholder="Email@ueab.ac.ke" value="<?php if(isset($_POST['email'])) $_POST['email'];?>"/><br/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+					<input class="form-control" type="Password" required placeholder="Choose Password" name="firstpasswd" id="firstpasswd"/><br/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+					<input class="form-control" type="Password" required placeholder="Re-enter Password" name="reenterpasswd" id="reenterpasswd" disabled/><br/>
+				</div>
+			</div>			
+			<div class="row">
+				<div class="col-xs-offset-4 col-xs-4 col-md-offset-5 col-md-2 col-lg-offset-5 col-lg-2">
+					<button class="btn btn-lg btn-primary btn-block" type="submit" name="submit_signup" id="submit_signup" disabled>Sign Up</button>
+				</div>
+			</div>
+		</form>
+		</div><?php
+	}?>
+</div></body>
+<?php exit();?>

@@ -5,7 +5,7 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             url: "_scripts/readtopics.php",
-            data:'keyword='+$(this).val(),
+            data: { keyword: $(this).val() },
             beforeSend: function(){
                 $("#topics").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
             },
@@ -23,7 +23,7 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             url: "_scripts/readusers.php",
-            data:'keyword='+$(this).val(),
+            data: { keyword: $(this).val() },
             beforeSend: function(){
                 $("#coauthors").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
             },
@@ -37,11 +37,11 @@ $(document).ready(function(){
 });
 //To select username
 function selectTopic(val){
-    var user = $("#topics").val();
-    var n = user.lastIndexOf(';');
-    var t = user.substr(0, n);
-    if(val=='nouser') t ? $("#topics").val(t + ';') : $("#topics").val('');
-    else t ? $("#topics").val(t + ';' +val + ';') : $("#topics").val(val + ';');
+    var topic = $("#topics").val();
+    var n = topic.lastIndexOf(';');
+    var t = topic.substr(0, n);
+    if(val=='notopic') t ? $("#topics").val(t + ';' + val + ';') : $("#topics").val(val + ';');
+    else t ? $("#topics").val(t + ';' + val + ';') : $("#topics").val(val + ';');
     $("#topic_suggestion_box").hide();
     $("#topics").focus();
 }

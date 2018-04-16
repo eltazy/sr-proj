@@ -13,9 +13,9 @@ class TopicManager{
         $this->_db = $temp_db;
     }
     //methods
-    public static function addNew($topic, $first_project, $db){
+    public static function addNew($topic, $first_project_uid, $db){
         $quest = $db->prepare("INSERT INTO topics (topic, hits, projects) VALUES (?, 1, ?)");
-        $quest->execute(array($topic, $first_project));
+        $quest->execute(array($topic, $first_project_uid.';'));
     }
     public function get($topic){
         $quest = $this->_db->prepare("SELECT * FROM topics WHERE topic = ?");
@@ -25,6 +25,11 @@ class TopicManager{
     }
     public static function getTopics($db){
         $quest = $db->prepare("SELECT * FROM topics");
+        $quest->execute();
+        return $quest->fetchAll();
+    }
+    public static function searchTopics($str, $db){
+        $quest = $db->prepare("SELECT topic, hits FROM topics WHERE topic REGEXP '$str'");
         $quest->execute();
         return $quest->fetchAll();
     }

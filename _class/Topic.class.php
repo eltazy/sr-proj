@@ -16,7 +16,10 @@ class Topic{
     }
     public function __toString(){
         $link = 'http://localhost/sr-proj/topic.php?title='.$this->topic();
-        return  '<a href="'.$link.'">'.ucfirst($this->topic()).'</a>('.$this->hits().')';
+        return  '<a href="'.$link.'">'.ucfirst($this->topic()).'</a> ('.$this->hits().')';
+    }
+    public function adminView(){
+        return  '<a href="http://localhost/sr-proj/admin/topic.php?title='.$this->topic().'">'.$this->topic().'</a>';
     }
     //getters
     public function topic(){

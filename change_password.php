@@ -6,32 +6,11 @@
     <script src="_scripts/jquery-3.3.1.min.js"></script>
     <script src="_scripts/signup.js"></script>
 </head>
+<body>
+	<div class="container-fluid" id="pagecontent">
 <?php
     include '_pages/header.php';
-
-    if(isset($_GET['change'])){
-        $message = $_GET['change'];
-        switch ($message) {
-            case 'notmatching':
-                echo '<label class="error_message"><b>The new and re-entered passwords do not match!</b></label>';
-                break;
-            case 'wrongpwd':
-                echo '<label class="error_message"><b>Current password incorrect.</b></label>';
-                break;
-            case 'retry':
-                echo '<label class="error_message"><b>Something went wrong. Please retry.</b></label>';
-                break;
-        }
-        unset($_GET['change']);
-    }
     if(isset($_SESSION['repsyst_session_username'])){
-        // COMPLETED: (Javascript - jQuery) enable submit button only if both passwords match
-        echo '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">
-                Current Password: <input type="password" name="current_password"></br>
-                New Password: <input type="password" name="new_password" id="firstpasswd"></br>
-                Re-enter new Password: <input type="password" name="new_password_biss" id="reenterpasswd" disabled></br>
-                <button type="submit" name="submit_changepwd" id="submit_signup" disabled>Submit</button>
-            </form>';
         if(isset($_POST['submit_changepwd'])){
             $curr_user = new Authentication($_SESSION['repsyst_session_username'], md5($_POST['current_password']));
             $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
@@ -46,7 +25,46 @@
                 else header("Location: change_password.php?change=notmatching");
             }
             else header("Location: change_password.php?change=wrongpwd");
-        }
+        } ?>
+        <div class="col-md-offset-3 col-md-6">
+            <div class="row"><h1>Change Password</h1></div>
+            <?php if(isset($_GET['change'])){
+                echo '<div class="row"><div class="col-md-12">';
+                $message = $_GET['change'];
+                switch ($message) {
+                    case 'notmatching':
+                        echo '<div class="alert alert-danger"><b>The new and re-entered passwords do not match!</b></div>';
+                        break;
+                    case 'wrongpwd':
+                        echo '<div class="alert alert-danger"><b>Password incorrect.</b></div>';
+                        break;
+                    case 'retry':
+                        echo '<div class="alert alert-danger"><b>Something went wrong. Please retry.</b></div>';
+                        break;
+                }
+                echo '</div></div>';
+                unset($_GET['change']);
+            } ?>
+            <form class="form-signin" action="<?= $_SERVER["PHP_SELF"] ?>" method="POST">
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input class="form-control" type="password" name="current_password">
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input class="form-control" type="password" name="new_password" id="firstpasswd">
+                </div>
+                <div class="form-group">
+                    <label>Re-enter new Password</label>
+                    <input class="form-control" type="password" name="new_password_biss" id="reenterpasswd" disabled>
+                </div>
+                <button class="btn btn-success" type="submit" name="submit_changepwd" id="submit_signup" disabled>Submit</button>
+            </form>
+        </div>
+        <?php
     }
     else header("Location: login.php");
 ?>
+    </div>
+</body>
+<?php include_once '_pages/footer.php'; exit();

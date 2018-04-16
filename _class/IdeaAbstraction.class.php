@@ -16,8 +16,11 @@ abstract class IdeaAbstraction{
         $link = 'http://localhost/sr-proj/project.php?uid='.$this->uid();
         $description_100_chars = strlen($this->description())>400 ? substr($this->description(), 0, 400) : $this->description();
         return  '<h3><a href="'.$link.'">'.$this->title().'</a></h3>
-                <br><p>'.$description_100_chars.'...<a href="'.$link.'"><b><u>more</u></b></a></p>
-                <br><p>'.$this->keywords().'</p>';
+                <p>'.$description_100_chars.'...<a href="'.$link.'"><b><u>more</u></b></a></p>
+                <p><b><u>Keywords</b></u>: '.$this->keywords().'</p><hr>';
+    }
+    public function adminView(){
+        return  '<a href="http://localhost/sr-proj/admin/project.php?uid='.$this->uid().'">'.$this->title().'</a>';
     }
     public function hydrate(array $data){
         foreach ($data as $key => $value){

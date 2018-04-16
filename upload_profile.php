@@ -52,4 +52,5 @@
 		}
 	}
 	else header("Location: profile.php?changeprofilepic=logout");
+	exit();
 ?>

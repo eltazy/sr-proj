@@ -2,7 +2,6 @@
     include_once '_class/IdeaAbstractionManager.class.php';
 	include_once '_class/StudentManager.class.php';
     include_once '_class/LecturerManager.class.php';
-    include_once '_class/FileManager.class.php';
 
 	include '_pages/header.php';
 
@@ -23,7 +22,7 @@
         $authors = explode(';', $project->coauthors());
         $keywords = explode(';', $project->keywords());
         $postedby = $project->postedby();
-        $documents = explode(';', $project->docs());
+        // $documents = explode(';', $project->docs());
         ?>
         <body>
         <div class="container-fluid" id="pagecontent">
@@ -65,15 +64,13 @@
                         <label>Keywords:</label> ';
                             foreach ($keywords as $key)
                                 echo '<u><a href="http://localhost/sr-proj/topic.php?title='.$key.'">'.$key.'</a></u> ';
-                echo    '</br>Documents: ';
-                            $temp = '';
-                            foreach ($documents as $doc)
-                                $temp = $temp.'<a href="./_uploads/_documents/"'.$doc.' target="_blank" download>download</a>; ';
-                            echo substr($temp, 0, -2).'</br>';
-                if(isset($_SESSION['repsyst_session_username']) && $postedby == $_SESSION['repsyst_session_username']){
-                    echo '  <br><a class="btn btn-primary" href="http://localhost/sr-proj/update_project.php?uid='.$uid.'">Update Project</a>
-                                <a class="btn btn-primary" href="http://localhost/sr-proj/upload.php?uid='.$uid.'">Add Files to project</a>';
-                }?>
+                // echo    '</br>Documents: ';
+                //             $temp = '';
+                //             foreach ($documents as $doc)
+                //                 $temp = $temp.'<a href="./_uploads/_documents/AB8CE9F1D6DF.docx" target="_blank" download>download</a>; ';
+                //             echo substr($temp, 0, -2).'</br>';
+                if(isset($_SESSION['repsyst_session_username']) && $postedby == $_SESSION['repsyst_session_username'])
+                    echo '<br><a class="btn btn-primary" href="http://localhost/sr-proj/update_project.php?uid='.$uid.'">Update Project</a>';?>
         
             </div>
                 </div>

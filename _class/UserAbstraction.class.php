@@ -21,6 +21,9 @@ abstract class UserAbstraction{
                 <br>Gender: '.$this->gender().
                 '<br>Username: @'.$this->username();
     }
+    public function adminView(){
+        return  '<a href="http://localhost/sr-proj/admin/user.php?user='.$this->username().'&type='.$this->type().'">'.$this->fullname().'</a></h3>';
+    }
     public function hydrate(array $response_data){
         foreach ($response_data as $key => $value){
             $method = 'set'.ucfirst($key);
@@ -105,6 +108,7 @@ abstract class UserAbstraction{
     }
 }//end of class
 interface UserType{
+    const ADMIN = 'Admin';
     const STUDENT = 'Student';
     const LECTURER = 'Lecturer';
 }

@@ -76,7 +76,7 @@
                     foreach ($collection->results() as $o) 
                         echo    '<div class="row">
                                     <div class="col-md-offset-2 col-md-8">'.$o.'</div>
-                                </div><hr>';
+                                </div>';
                     echo '<hr>';
                 }
             }

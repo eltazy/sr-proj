@@ -1,23 +1,25 @@
-:root {
-    --theme_color: rgb(58, 161, 245);
-}
-
-/* Error messages color */
-.error_message {
-	color: rgb(228, 29, 29);
-}
-.success_message {
-	color: rgb(11, 121, 11);
-}
 /* Header design */
+footer {
+    position: absolute;
+    bottom: 0;
+}
 body {
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
     padding-top: 70px;
 }
+html {
+    height:100%;
+}
 #navheader {
-    background-color: var(--theme_color);
+    background-color: var(--theme_primary_color);
     padding-top: 15px;
     padding-bottom: 15px;
 }
+#navigation li a{color: var(--nav_text_color)}
+#navigation li a:hover{color: black}
+.nav.navbar-nav.navbar-right li a{color: var(--nav_text_color)}
 #menuItem {
     padding-left: 5px;
     padding-right: 5px;
@@ -30,20 +32,27 @@ body {
     padding-top: 100px;
     text-align: center;
 }
-.dropdown-toggle:active +li.a:hover {
-    /* color: var(--theme_color); */
-    color: yellow;
+#login-body {
+    padding-top: 100px;
+    text-align: center;
 }
-/* .uneditable-input:focus {   
-  border-color: rgba(126, 239, 104, 0.8);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
-  outline: 0 none;
-} */
+#signupForm {
+    padding-top: 10px;
+    text-align: center;
+}
 #icons {
     padding-left: 20px;
 }
+#pageheader {
+    background: var(--theme_primary_color);
+}
+#pagecontent {
+    padding-bottom: var(--footer_ht);
+}
 #pagefooter {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    background: var(--theme_color);
+    width: 100%;
+    height: var(--footer_ht);
+    padding-top: 15px;
+    background: var(--theme_primary_color);
+    color: var(--nav_text_color);
 }

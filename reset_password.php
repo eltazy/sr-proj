@@ -5,7 +5,7 @@
     
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="style.php" />
         <title>Reset Password</title>
         <script src="_scripts/jquery-3.3.1.min.js"></script>
         <script src="_scripts/signup.js"></script>
@@ -36,4 +36,6 @@
                             <button type="submit" name="submit_reset_password" id="submit_signup" disabled>Submit</button>
                         </form>';
         else header("Location: index.php");
-        }
+    }
+    exit();
+?>

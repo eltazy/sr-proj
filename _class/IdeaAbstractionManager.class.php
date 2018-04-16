@@ -60,6 +60,27 @@ class IdeaAbstractionManager{
         $quest = $this->_db->prepare("DELETE FROM abs_ideas_tb WHERE uid = ?");
         $quest->execute(array($uid->uid()));
     }
+    //update methods
+    public function update($uid, $temp_object_array){
+        $quest = $this->_db->prepare("  UPDATE abs_ideas_tb 
+                                        SET title = ?,
+                                        description = ?,
+                                        links = ?,
+                                        coauthors = ?,
+                                        keywords = ?,
+                                        state = ? WHERE uid = ?");
+        $quest->execute(array(  $temp_object_array['title'],
+                                $temp_object_array['description'],
+                                $temp_object_array['links'],
+                                $temp_object_array['coauthors'],
+                                $temp_object_array['keywords'],
+                                $temp_object_array['state'],
+                                $uid));
+    }
+    public function addDocument($uid, $str){
+        $quest = $this->_db->prepare("UPDATE abs_ideas_tb SET docs = CONCAT(docs, ';?') WHERE uid = ?");
+        $quest->execute(array($str, $uid));
+    }
     //get methods
     public function get($uid){
         $quest = $this->_db->prepare("SELECT * FROM abs_ideas_tb WHERE uid = ?");
@@ -74,8 +95,19 @@ class IdeaAbstractionManager{
         }
         return new $Constructor($response_data);
     }
+    public static function getTitle($uid, $db){
+        $quest = $db->prepare("SELECT title FROM abs_ideas_tb WHERE uid = ?");
+        $quest->execute(array($uid));
+        $response = $quest->fetch(PDO::FETCH_ASSOC);
+        return $response['title'];
+    }
+    public static function getProjects($uname, $db){
+        $quest = $db->prepare("SELECT uid FROM abs_ideas_tb WHERE postedby = ? OR coauthors REGEXP '$uname'");
+        $quest->execute(array($uname));
+        return $quest->fetchAll();
+    }
     public static function getLatestProjects($db){
-        $quest = $db->prepare("SELECT * FROM abs_ideas_tb ORDER BY id DESC LIMIT 15");
+        $quest = $db->prepare("SELECT * FROM abs_ideas_tb ORDER BY id DESC LIMIT 5");
         $quest->execute();
         return $quest->fetchAll();
     }

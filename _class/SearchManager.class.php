@@ -25,12 +25,12 @@ class SearchManager{
         $res_lecturers = new Collection(new SearchResult(array()), 'Lecturer');
         if(in_array('Lecturers', $search->userOptions())){
             $res_lecturers = $this->searchLecturers($search->str());
-            array_push($results, $res_lecturers);
+            if($res_lecturers->hits()) array_push($results, $res_lecturers);
         }
         $res_students = new Collection(new SearchResult(array()), 'Student');
         if(in_array('Students', $search->userOptions())){
             $res_students = $this->searchStudents($search->str());
-            array_push($results, $res_students);
+            if($res_students->hits()) array_push($results, $res_students);
         }
         return $results;
     }
@@ -40,22 +40,22 @@ class SearchManager{
         $temp_results = new Collection(new SearchResult(array()), 'Idea');
         if(in_array('Idea', $search->projectOptions())){
             $temp_results = $this->searchIdeas($search->str());
-            array_push($results, $temp_results);
+            if($temp_results->hits()) array_push($results, $temp_results);
         }
         $temp_results = new Collection(new SearchResult(array()), 'Project');
         if(in_array('Project', $search->projectOptions())){
             $temp_results = $this->searchProjects($search->str());
-            array_push($results, $temp_results);
+            if($temp_results->hits()) array_push($results, $temp_results);
         }
         $temp_results = new Collection(new SearchResult(array()), 'SeniorProject');
         if(in_array('Senior Project', $search->projectOptions())){
             $temp_results = $this->searchSeniorProjects($search->str());
-            array_push($results, $temp_results);
+            if($temp_results->hits()) array_push($results, $temp_results);
         }
         $temp_results = new Collection(new SearchResult(array()), 'Research');
         if(in_array('Research', $search->projectOptions())){
             $temp_results = $this->searchResearches($search->str());
-            array_push($results, $temp_results);
+            if($temp_results->hits()) array_push($results, $temp_results);
         }
         return $results;
     }
@@ -74,10 +74,11 @@ class SearchManager{
     }
     public function searchLecturers($str){
         $quest = $this->_db->prepare(" SELECT * FROM lecturers_tb
-                                                WHERE firstname REGEXP '$str' 
+                                                WHERE (firstname REGEXP '$str' 
                                                 OR middlename REGEXP '$str' 
                                                 OR lastname REGEXP '$str' 
-                                                OR username REGEXP '$str'");
+                                                OR username REGEXP '$str') 
+                                                AND NOT username = 'Admin'");
         $quest->execute();
         $rep = new SearchResult($quest->fetchAll());
         $s = $rep->hits() == 1 ? 'Lecturer' : 'Lecturers';

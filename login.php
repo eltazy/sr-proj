@@ -5,16 +5,14 @@
 	include_once '_class/LecturerManager.class.php';
 	include_once '_class/AuthenticationManager.class.php';
 	
-	if(isset($_SESSION['repsyst_session_username'])){
-		header("Location: index.php");
-		exit();
-	}
+	if(isset($_SESSION['repsyst_session_username'])) header("Location: index.php");
 ?>
 <head>
 <meta charset="utf-8" />
+    <link rel="shortcut icon" href="_css_images/ueab_icon.ico" />
 	<title>Login</title>
 	<!-- TODO:(7) (CSS) Change styling -->
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="style.php">
 
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -28,9 +26,9 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-	<body style="background-color: rgb(58, 161, 245);">
+	<body id="login-body">
 	<div class="col-md-12 col-lg-12" id="loginForm">
-		<div class="">
+		<!-- <div class=""> -->
 			<h1>Login</h1>
 	<?php
 				if(isset($_POST['submit_login'])){
@@ -43,11 +41,12 @@
 						$database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
 						$user_input_cred = new Authentication($user_input_username, md5($user_input_password));
 						$temp_CredManager = new AuthenticationManager($database);
-						$temp_StudentManager = new StudentManager($database);
 						$temp_db_cred = $temp_CredManager->get($user_input_username);
+						$Manager = ($temp_db_cred->type() == 'S' ? 'Student' : 'Lecturer').'Manager';
+						$temp_user_manager = new $Manager($database);
 
-						if($user_input_cred == $temp_db_cred){ //if there is a match in the db
-							$temp_session_user = $temp_StudentManager->get($user_input_username);
+						if($user_input_cred->matches($temp_db_cred)){ //if there is a match in the db
+							$temp_session_user = $temp_user_manager->get($user_input_username);
 							$_SESSION['repsyst_session_fullname'] = $temp_session_user->fullname();
 							$_SESSION['repsyst_session_username'] = $temp_session_user->username();
 							$_SESSION['repsyst_session_firstname'] = $temp_session_user->firstname();
@@ -58,39 +57,43 @@
 							$_SESSION['repsyst_session_email'] = $temp_session_user->email();
 							$_SESSION['repsyst_session_projects'] = $temp_session_user->projects();
 							$_SESSION['repsyst_session_ideas'] = $temp_session_user->ideas();
-							header("Location: profile.php?myprofile");
-							exit();
+							if(strtolower($temp_session_user->username())=='admin') 
+								header("Location: admin/index.php");
+							else header("Location: profile.php?myprofile");
 						}
 						else header("Location: login.php?login=nomatch"); //there is no match in the db
 					}
 				}
 				else{ //if the user didnt click on the submit button
 					
+					//show login form
+					?>
+					<div class="container"><?php
 					//handling login error messages
 					if(isset($_GET['login'])){
+						echo '<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">';
 						$login = $_GET['login'];
 						switch ($login) {
 							case 'pwd_changed':
-								echo '<label class="success_message">Password successfully changed! Login now.</label><br/>';
+								echo '<div class="alert alert-success">Password successfully changed! Login now.</div><br/>';
 								break;
 							case 'error':
-								echo '<label class="error_message">Log in error!</label><br/>';
+								echo '<div class="alert alert-danger">Log in error!</div><br/>';
 								break;
 							case 'empty':
-								echo '<label class="error_message">Fill both Username and Password</label><br/>';
+								echo '<div class="alert alert-danger">Fill both Username and Password</div><br/>';
 								break;
 							case 'nomatch':
-								echo '<label class="error_message">Username or password incorrect</label><br/>';
+								echo '<div class="alert alert-danger">Username or password incorrect</div><br/>';
 								break;
 							case 'validated':
-								echo '<label class="success_message">Account validated. Login now</label><br/>';
+								echo '<div class="alert alert-success">Account validated. Login now</div><br/>';
 								break;
 						}
-					}
-					//show login form
-					?>
-					<div class="container">
-						<form class "form-signin" method="post" action="<?= $_SERVER["PHP_SELF"] ?>">
+						echo '</div>';
+						unset($_GET['login']);
+					}?>
+						<form class="form-signin" method="post" action="<?= $_SERVER["PHP_SELF"] ?>">
 							<!-- <h2 class="form-signin-heading">Please sign in</h2> -->
 							<div class="row">
 							<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
@@ -114,7 +117,7 @@
 						<div class="row">
 							<b><a style="color: black;" href="forgot_password.php">Forgot password?</a></b>
 						</div>
-				</div>
+				<!-- </div> -->
 				</div>';
 				<?php } ?>
-</body>
+</body><?php exit() ?>

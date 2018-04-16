@@ -27,4 +27,5 @@
 		}
 		else header("Location: signup.php?signup=invalidated");
 	}
+	exit();
 ?>

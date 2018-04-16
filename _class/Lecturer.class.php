@@ -20,6 +20,7 @@ class Lecturer extends UserAbstraction{
     }
     //setters
     public function setType(){
+        if($this->_username == UserType::ADMIN) $this->_type == UserType::ADMIN;
         $this->_type = UserType::LECTURER;
     }
     public function setSupervision($sup){
