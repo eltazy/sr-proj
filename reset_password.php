@@ -11,7 +11,6 @@
     </head>
     <body>
     <div class="container-fluid" id="pagecontent">
-    <h1></h1>
 <?php
     if(isset($_SESSION['repsyst_session_username'])) header("Location: forgot_password.php?message=loggedin");
     else if(isset($_POST['submit_reset_password'])){
