@@ -2,23 +2,14 @@
     include_once '_class/IdeaAbstractionManager.class.php';
 	include_once '_class/StudentManager.class.php';
     include_once '_class/LecturerManager.class.php';
+    include_once '_class/FileManager.class.php';
 
 	include '_pages/header.php';?>
     <script src="_scripts/project.js"></script>
     <script src="_scripts/upload.js"></script>
     <body>
         <div class="container-fluid" id="pagecontent">
-    <?php
-    //handling login error messages
-    // if(isset($_GET['update'])){
-    //     $update = $_GET['update'];
-    //     switch ($update) {
-    //         case 'success': echo '<label class="success_message">Project successfully updated</label><br/>'; break;
-    //         case 'failure': echo '<label class="error_message">Project Update failed</label><br/>'; break;
-    //     }
-    //     unset($_GET);
-    // }
-    
+    <?php    
     $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -44,6 +35,7 @@
 
         $manager = new IdeaAbstractionManager($database);
         $project = $manager->get($uid);
+        $documents = FileManager::getFiles($uid, $database);
         $_SESSION['temp_uid'] = $project->uid();
         // print_r($project);
         $type = str_replace(' ', '', $project->type());
@@ -52,6 +44,7 @@
         <div class="col-md-offset-3 col-md-6">
             <h3>Edit <?=$project->type()?></h3>
             <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
+                <input type="hidden" name="uid" value="<?= $_GET["uid"] ?>">
                 <div class="form-group">
                     <label>Title</label>
                     <input class="form-control" type="text" name="title" value="<?=$project->title()?>">
@@ -85,14 +78,17 @@
                     <input class="form-control" type="text" id="topics" name="keywords" value="<?=$project->keywords()?>">
                         <div id="topic_suggestion_box"></div>
                 </div>
-                <!-- <div class="form-group">
-                    <label>Add a File</label>
-                    <input class="form-control" type="hidden" id="uniqueid" name="uid" value="<?= $project->uid() ?>">
-                    <input type="text" id="filename" name="filename">
-                    <input type="file" id="files" name="files">
-                    <a href="#topics" id="upload" name="upload">Upload</a>
-                    <progress id="prog" value="0" min="0" max="100"></progress>
-                </div> -->
+                <div class="form-group">
+                    <label>Documents</label><?php
+                        $temp='<ul>';
+                        foreach ($documents as $doc)
+                            $temp .= '  <li>'.File::getFileIcon($doc['type']).$doc['description'].'('.number_format($doc['size']/1024).'Kb)
+                                            <a href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                            <a href="#"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a>
+                                        </li>';
+                        $temp .= '</ul>';
+                        echo empty($documents) ? 'No Documents' : $temp;?>
+                </div>
                 <div class="form-group">
                     <button class="btn btn-success" type="submit" name="submit_save">Save</button>
                     <button class="btn btn-default" type="submit" name="submit_cancel">Cancel</button>

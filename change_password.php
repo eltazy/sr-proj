@@ -1,15 +1,14 @@
 <?php
     if(!isset($_SESSION)) session_start();
 
-    include_once '_class/AuthenticationManager.class.php';?>
+    include_once '_class/AuthenticationManager.class.php';
+    include '_pages/header.php';?>
 <head>
-    <script src="_scripts/jquery-3.3.1.min.js"></script>
     <script src="_scripts/signup.js"></script>
 </head>
 <body>
 	<div class="container-fluid" id="pagecontent">
 <?php
-    include '_pages/header.php';
     if(isset($_SESSION['repsyst_session_username'])){
         if(isset($_POST['submit_changepwd'])){
             $curr_user = new Authentication($_SESSION['repsyst_session_username'], md5($_POST['current_password']));

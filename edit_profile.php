@@ -23,7 +23,6 @@
     }
 ?>
 <head>
-    <script src="_scripts/jquery-3.3.1.min.js"></script>
     <script>
         var main = function(){
             $("#upload").on('change',function(e){

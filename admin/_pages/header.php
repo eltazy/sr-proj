@@ -16,7 +16,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" id="pageheader">
     <div class="container-fluid" id="navheader">
         <a class="navbar-header" href="index.php">
-            <img alt="Brand" src="../_css_images/50px_ueab_logo.png">
+            <img alt="Brand" src="../_css_images/ueab_logo.png">
         </a>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navigation">

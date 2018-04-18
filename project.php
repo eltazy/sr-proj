@@ -23,7 +23,7 @@
         $authors = explode(';', $project->coauthors());
         $keywords = explode(';', $project->keywords());
         $postedby = $project->postedby();
-        $documents = explode(';', $project->docs());
+        $documents = FileManager::getFiles($uid, $database);
         ?>
         <body>
         <div class="container-fluid" id="pagecontent">
@@ -65,11 +65,12 @@
                         <label>Keywords:</label> ';
                             foreach ($keywords as $key)
                                 echo '<u><a href="http://localhost/sr-proj/topic.php?title='.$key.'">'.$key.'</a></u> ';
-                echo    '</br>Documents: ';
-                            $temp = '';
-                            foreach ($documents as $doc)
-                                $temp = $temp.'<a href="./_uploads/_documents/"'.$doc.' target="_blank" download>download</a>; ';
-                            echo substr($temp, 0, -2).'</br>';
+                echo    '</br><label>Documents:</label> ';
+                        $temp='<ul>';
+                        foreach ($documents as $doc)
+                            $temp .= '<li><a href="download.php?file='.$doc['filename'].'" target="_blank" title="Download">'.$doc['description'].'</a>('.number_format($doc['size']/1024).'Kb)'.File::getFileIcon($doc['type']).'</li>';
+                        $temp .= '</ul>';
+                        echo empty($documents) ? 'No Documents' : $temp;
                 if(isset($_SESSION['repsyst_session_username']) && $postedby == $_SESSION['repsyst_session_username']){
                     echo '  <br><a class="btn btn-primary" href="http://localhost/sr-proj/update_project.php?uid='.$uid.'">Update Project</a>
                                 <a class="btn btn-primary" href="http://localhost/sr-proj/upload.php?uid='.$uid.'">Add Files to project</a>';

@@ -14,7 +14,7 @@ $(document).ready(function(){
             xhr: function() {
                 var xhr = $.ajaxSettings.xhr();
                 xhr.upload.addEventListener("progress", function(ev) {
-                    // if(ev.total <= 10000000){
+                    if(ev.total <= 10000000){
                         $('#big-size-error').hide();
                         $('#lb-processed').html(ev.loaded/1000 | 0);
                         $("#lb-total").html(ev.total/1000 | 0);
@@ -22,8 +22,8 @@ $(document).ready(function(){
                         $('#prog').val((ev.loaded/(ev.total/100)) | 0);
                         if(ev.loaded/(ev.total/100) >= 100)
                             $('#btn_upload').prop("disabled", false);
-                    // }
-                    // else $('#big-size-error').show();
+                    }
+                    else $('#big-size-error').show();
                 }, false);
                 return xhr;
             }

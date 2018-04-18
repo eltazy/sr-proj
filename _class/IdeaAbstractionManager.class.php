@@ -77,9 +77,14 @@ class IdeaAbstractionManager{
                                 $temp_object_array['state'],
                                 $uid));
     }
+    public function getDocs($uid){
+        $quest = $this->_db->prepare("SELECT docs FROM abs_ideas_tb WHERE uid = ?");
+        $quest->execute(array($uid));
+        return $quest->fetch(PDO::FETCH_ASSOC)['docs'];
+    }
     public function addDocument($uid, $str){
-        $quest = $this->_db->prepare("UPDATE abs_ideas_tb SET docs = CONCAT(docs, ';?') WHERE uid = ?");
-        $quest->execute(array($str, $uid));
+        $quest = $this->_db->prepare("UPDATE abs_ideas_tb SET docs = ? WHERE uid = ?");
+        $quest->execute(array($this->getDocs($uid).';'.$str, $uid));
     }
     //get methods
     public function get($uid){

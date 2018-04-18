@@ -14,11 +14,11 @@ class FileManager{
     }
     //methods
     public function add(File $file){
-        $quest = $this->_db->prepare("INSERT INTO files (description, filename) VALUES (?, ?)");
-        $quest->execute(array($file->description(), $file->filename()));
+        $quest = $this->_db->prepare("INSERT INTO files (description, filename, size, type) VALUES (?, ?, ?, ?)");
+        $quest->execute(array($file->description(), $file->filename(), $file->size(), $file->type()));
     }
     public static function getFiles($proj_id, $db){
-        $quest = $db->prepare("SELECT * FROM files WHERE WHERE topic REGEXP '$proj_id'");
+        $quest = $db->prepare("SELECT * FROM files WHERE filename REGEXP '$proj_id'");
         $quest->execute();
         return $quest->fetchAll();
     }

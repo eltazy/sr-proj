@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
 <!-- icon -->
     <link rel="shortcut icon" href="_css_images/ueab_icon.ico" />
+<!-- fontawesome icons -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 <!-- custom styling -->
 	<link rel="stylesheet" type="text/css" href="style.php">
 <!-- jQuery -->
@@ -17,7 +19,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" id="pageheader">
     <div class="container-fluid" id="navheader">
         <a class="navbar-header" href="index.php">
-            <img alt="Brand" src="./_css_images/50px_ueab_logo.png">
+            <img alt="Brand" src="./_css_images/ueab_logo.png">
         </a>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="navigation">

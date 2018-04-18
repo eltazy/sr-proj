@@ -12,8 +12,8 @@
 	<div class="container-fluid" id="pagecontent">
 			<div class="col-md-offset-1 col-md-8 offset-md-1">
 				<!-- recent activity -->
-				<h1>Recent Activity</h1>
-				<?php include '_pages/recent_activity.php' ?>
+				<!-- <h1>Recent Activity</h1>
+				<?php include '_pages/recent_activity.php' ?> -->
 
 				<!-- recent projects -->
 				<h1>Recent Projects</h1>

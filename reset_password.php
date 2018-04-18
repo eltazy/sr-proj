@@ -7,9 +7,11 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" href="style.php" />
         <title>Reset Password</title>
-        <script src="_scripts/jquery-3.3.1.min.js"></script>
         <script src="_scripts/signup.js"></script>
     </head>
+    <body>
+    <div class="container-fluid" id="pagecontent">
+    <h1></h1>
 <?php
     if(isset($_SESSION['repsyst_session_username'])) header("Location: forgot_password.php?message=loggedin");
     else if(isset($_POST['submit_reset_password'])){
@@ -36,6 +38,7 @@
                             <button type="submit" name="submit_reset_password" id="submit_signup" disabled>Submit</button>
                         </form>';
         else header("Location: index.php");
-    }
-    exit();
-?>
+    }?>
+    </div>
+    </body>
+    <?php include_once '_pages/footer.php'; exit() ?>
