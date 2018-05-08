@@ -39,7 +39,7 @@
             $docs = ''; $uid = '';
             $links = $_POST['links'];
 
-            $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+            $database = new PDO($dbconnexion, $dbuser, $dbpwd);
             $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             # Generating unique identifier

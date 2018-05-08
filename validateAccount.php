@@ -6,7 +6,7 @@
 	include '_pages/header.php';
 
 	if(isset($_GET['usr']) && isset($_GET['uniqueid'])){
-		$database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+		$database = new PDO($dbconnexion, $dbuser, $dbpwd);
 		$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$usr = $_GET['usr'];
 		$uid = $_GET['uniqueid'];

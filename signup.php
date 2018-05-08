@@ -18,7 +18,7 @@
 
 	if(isset($_SESSION['repsyst_session_username'])) header("Location: index.php");
 	if(isset($_POST['submit_signup'])){
-		$database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+		$database = new PDO($dbconnexion, $dbuser, $dbpwd);
 		$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$std_manager = new StudentManager($database);
 	

@@ -12,7 +12,7 @@
     if(isset($_SESSION['repsyst_session_username'])){
         if(isset($_POST['submit_changepwd'])){
             $curr_user = new Authentication($_SESSION['repsyst_session_username'], md5($_POST['current_password']));
-            $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+            $database = new PDO($dbconnexion, $dbuser, $dbpwd);
             $temp_CredManager = new AuthenticationManager($database);
             $temp_db_cred = $temp_CredManager->get($_SESSION['repsyst_session_username']);
             if($temp_db_cred == $curr_user){

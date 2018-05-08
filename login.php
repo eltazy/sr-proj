@@ -4,6 +4,8 @@
 	include_once '_class/StudentManager.class.php';
 	include_once '_class/LecturerManager.class.php';
 	include_once '_class/AuthenticationManager.class.php';
+
+    include_once './_config/db.php';
 	
 	if(isset($_SESSION['repsyst_session_username'])) header("Location: index.php");
 ?>
@@ -38,7 +40,7 @@
 
 					if(empty($user_input_username) || empty($user_input_password)) header("Location: login.php?login=empty");
 					else{ //if none of the fields is empty login retrieve db credentials
-						$database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+						$database = new PDO($dbconnexion, $dbuser, $dbpwd);
 						$user_input_cred = new Authentication($user_input_username, md5($user_input_password));
 						$temp_CredManager = new AuthenticationManager($database);
 						$temp_db_cred = $temp_CredManager->get($user_input_username);

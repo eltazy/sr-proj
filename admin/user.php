@@ -27,7 +27,7 @@
 		if(isset($_GET['user'])){
 			$username = $_GET['user'];
 			$user_type = $_GET['type'].'Manager';
-			$database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+			$database = new PDO($dbconnexion, $dbuser, $dbpwd);
 				$manager = new $user_type($database);
 				// get user info
 				$user = $manager->get($username);

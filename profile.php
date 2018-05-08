@@ -23,7 +23,7 @@
 		if(isset($_GET['user'])){
 			$username = $_GET['user'];
 			$temp = isset($_SESSION['repsyst_session_username'])?$_SESSION['repsyst_session_username']:'';
-			$database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+			$database = new PDO($dbconnexion, $dbuser, $dbpwd);
 			
 			if ($username == 'myprofile' || $username == $temp){
 				?>
@@ -64,7 +64,7 @@
 			<?php }
 			// another user's profile
 			else{
-				$database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+				$database = new PDO($dbconnexion, $dbuser, $dbpwd);
 				$__Manager = $_GET['type'].'Manager';
 				$manager = new $__Manager($database);
 				// get user public info

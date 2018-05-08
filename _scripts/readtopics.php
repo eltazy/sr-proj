@@ -3,7 +3,7 @@ if (!isset($_SESSION)) session_start();
 
 include_once '../_class/TopicManager.class.php';
 
-    $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+    $database = new PDO($dbconnexion, $dbuser, $dbpwd);
     if(isset($_POST['keyword'])){
         $temp = explode(';', $_POST['keyword']);
         $str = end($temp);

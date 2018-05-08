@@ -6,10 +6,10 @@
 <body>
     <div class="container-fluid" id="pagecontent">
         <?php
-        $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+        $database = new PDO($dbconnexion, $dbuser, $dbpwd);
         if(isset($_GET['title'])){
             echo '<title>Topic: '.$_GET['title'].'</title>';
-            $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+            $database = new PDO($dbconnexion, $dbuser, $dbpwd);
 
             $topic_manager = new TopicManager($database);
             $topic = $topic_manager->get($_GET['title']);

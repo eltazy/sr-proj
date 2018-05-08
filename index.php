@@ -17,7 +17,7 @@
 
 				<!-- recent projects -->
 				<h1>Recent Projects</h1>
-				<?php $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+				<?php $database = new PDO($dbconnexion, $dbuser, $dbpwd);
 				$latest_projects = IdeaAbstractionManager::getLatestProjects($database);
 				foreach ($latest_projects as $project){
 					$Constructor = str_replace(' ', '', $project['type']);

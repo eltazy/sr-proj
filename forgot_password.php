@@ -23,7 +23,7 @@
 	}	
     if(isset($_POST['submit_pwd_forgotten'])){
 		$email = $_POST['locked_user_email'];
-		$database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+		$database = new PDO($dbconnexion, $dbuser, $dbpwd);
 		$temp_StudentManager = new StudentManager($database);
 		$temp_user = $temp_StudentManager->get_from_email($email);
 		if($temp_user){

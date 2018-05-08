@@ -1,6 +1,8 @@
 <!-- Page header -->
-<?php if (!isset($_SESSION)) session_start(); 
-// include_once './style.php'?>
+<?php
+    if (!isset($_SESSION)) session_start();
+    include_once './_config/db.php';
+?>
 <head>
     <meta charset="utf-8" />
 <!-- icon -->

@@ -2,7 +2,7 @@
 	include_once '../_class/StudentManager.class.php';
     include_once '../_class/LecturerManager.class.php';
     
-    $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+    $database = new PDO($dbconnexion, $dbuser, $dbpwd);
     if(isset($_POST['keyword'])) {
         $temp = explode(';', $_POST['keyword']);
         $str = end($temp);

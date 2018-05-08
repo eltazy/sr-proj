@@ -6,7 +6,7 @@
     include_once '_class/LecturerManager.class.php';
 
 	if(isset($_POST['submit_update_profile'])){
-        $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+        $database = new PDO($dbconnexion, $dbuser, $dbpwd);
 		$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $UserManager = $_SESSION['repsyst_session_type'].'Manager';
         $UserManager = new $UserManager($database);

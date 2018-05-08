@@ -66,7 +66,7 @@
                 if(isset($_GET['oprj'])) array_push($project_options, $_GET['oprj']);
                 if(isset($_GET['osrp'])) array_push($project_options, $_GET['osrp']);
             $search = new Search($search_str, $user_options, $project_options);
-            $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+            $database = new PDO($dbconnexion, $dbuser, $dbpwd);
             $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $search_manager = new SearchManager($database);
             $search_results = $search_manager->search($search);

@@ -17,7 +17,7 @@ if(isset($_SESSION['repsyst_session_username'])){
                 $filename = $name.'.'.$ext;
                 move_uploaded_file($tmp_name, $uploads_dir.$filename);
                 $temp_file = new File($filename, $_POST['description'], $_FILES['file1']['size'], File::getFileType($ext));
-                $database = new PDO('mysql:host=localhost;dbname=srproj', 'root', '');
+                $database = new PDO($dbconnexion, $dbuser, $dbpwd);
                 $file_manager = new FileManager($database);
                 $file_manager->add($temp_file);
                 $project_manager = new IdeaAbstractionManager($database);
