@@ -8,11 +8,8 @@
 
 	if(isset($_GET['uid'])){
         $uid = $_GET['uid'];
-        
-        $database = new PDO($dbconnexion, $dbuser, $dbpwd);
-        $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $manager = new IdeaAbstractionManager($database);
+        $manager = new IdeaAbstractionManager();
         $project = $manager->get($uid);
         // customizing page title eg. "My research's title blahblabla - Research"
         $s = get_class($project)=='SeniorProject' ? 'Senior Project' : get_class($project);
@@ -23,7 +20,7 @@
         $authors = explode(';', $project->coauthors());
         $keywords = explode(';', $project->keywords());
         $postedby = $project->postedby();
-        $documents = FileManager::getFiles($uid, $database);
+        $documents = FileManager::getFiles($uid, __db());
         ?>
         <body>
         <div class="container-fluid" id="pagecontent">
@@ -42,18 +39,18 @@
                                 $temp = $temp.'<a href="'.$link.'" target="_blank">Link'.($key+1).'</a>; ';
                             echo substr($temp, 0, -2).'<br>';
                 echo    '<label>Posted by:</label> ';
-                            if(LecturerManager::lecturerExists($postedby, $database))
-                                echo '<a href="http://localhost/sr-proj/profile.php?user='.$postedby.'&type=Lecturer">'.LecturerManager::getFullname($postedby, $database).'</a></br>';
+                            if(LecturerManager::lecturerExists($postedby, __db()))
+                                echo '<a href="http://localhost/sr-proj/profile.php?user='.$postedby.'&type=Lecturer">'.LecturerManager::getFullname($postedby, __db()).'</a></br>';
                             else
-                                echo '<a href="http://localhost/sr-proj/profile.php?user='.$postedby.'&type=Student">'.StudentManager::getFullname($postedby, $database).'</a></br>';
+                                echo '<a href="http://localhost/sr-proj/profile.php?user='.$postedby.'&type=Student">'.StudentManager::getFullname($postedby, __db()).'</a></br>';
 
                 echo    '<label>Authors:</label> ';
                             $temp = '';
                             foreach ($authors as $uname){
-                                if(LecturerManager::lecturerExists($uname, $database))
-                                    $temp = $temp.'<a href="http://localhost/sr-proj/profile.php?user='.$uname.'&type=Lecturer">'.LecturerManager::getFullname($uname, $database).'</a>; ';
+                                if(LecturerManager::lecturerExists($uname, __db()))
+                                    $temp = $temp.'<a href="http://localhost/sr-proj/profile.php?user='.$uname.'&type=Lecturer">'.LecturerManager::getFullname($uname, __db()).'</a>; ';
                                 else
-                                    $temp = $temp.'<a href="http://localhost/sr-proj/profile.php?user='.$uname.'&type=Student">'.StudentManager::getFullname($uname, $database).'</a>; ';
+                                    $temp = $temp.'<a href="http://localhost/sr-proj/profile.php?user='.$uname.'&type=Student">'.StudentManager::getFullname($uname, __db()).'</a>; ';
                             }
                             echo substr($temp, 0, -2).'<br>';
                 echo    '<label>Created on</label> '.

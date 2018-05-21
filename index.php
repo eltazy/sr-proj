@@ -12,13 +12,13 @@
 	<div class="container-fluid" id="pagecontent">
 			<div class="col-md-offset-1 col-md-8 offset-md-1">
 				<!-- recent activity -->
-				<!-- <h1>Recent Activity</h1>
-				<?php include '_pages/recent_activity.php' ?> -->
+				<h1>Recent Activity</h1>
+				<?php include '_pages/recent_activity.php' ?>
 
 				<!-- recent projects -->
 				<h1>Recent Projects</h1>
-				<?php $database = new PDO($dbconnexion, $dbuser, $dbpwd);
-				$latest_projects = IdeaAbstractionManager::getLatestProjects($database);
+				<?php
+				$latest_projects = IdeaAbstractionManager::getLatestProjects(__db());
 				foreach ($latest_projects as $project){
 					$Constructor = str_replace(' ', '', $project['type']);
 					echo new $Constructor($project);
@@ -28,7 +28,7 @@
 			<div class="col-xs-12 col-md-3" id="popular-topics">
 				<!-- popular topics -->
 				<h3>Popular Topics</h3>
-				<?php $popular_topics = TopicManager::getPopularTopics($database) ?>
+				<?php $popular_topics = TopicManager::getPopularTopics(__db()) ?>
 				<li><a href="http://localhost/sr-proj/topic.php?all">All topics</a></li>
 				<ul><?php
 				foreach ($popular_topics as $topic)

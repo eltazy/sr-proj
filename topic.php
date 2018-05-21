@@ -6,19 +6,17 @@
 <body>
     <div class="container-fluid" id="pagecontent">
         <?php
-        $database = new PDO($dbconnexion, $dbuser, $dbpwd);
         if(isset($_GET['title'])){
             echo '<title>Topic: '.$_GET['title'].'</title>';
-            $database = new PDO($dbconnexion, $dbuser, $dbpwd);
 
-            $topic_manager = new TopicManager($database);
+            $topic_manager = new TopicManager();
             $topic = $topic_manager->get($_GET['title']);
             $hits = $topic->hits()?>
             
         <div class="col-md-offset-2 col-md-8">
             <h1><?=$hits?> <?=$hits==1?'project':'projects'?> discussing this topic</h1><hr><?php
             $projects = explode(';', $topic->projects());
-            $project_manager = new IdeaAbstractionManager($database);
+            $project_manager = new IdeaAbstractionManager();
             foreach ($projects as $projID)
                 if(!empty($projID)) echo $project_manager->get($projID);
         }else{?>
@@ -39,14 +37,14 @@
             <?php
                 if(isset($_GET['search'])){
                     echo '<title>Search for topics like '.$_GET['search'].'</title>';
-                    $search_results = TopicManager::searchTopics($_GET['search'], $database);
+                    $search_results = TopicManager::searchTopics($_GET['search'], __db());
                     echo '<ul>';
                     foreach ($search_results as $topic)
                         echo '<li class="col-md-offset-2 col-md-6">'.(new Topic($topic)).'</li>';
                     echo '</ul>';
                 }else{
             echo '<title>All Topics</title>';
-            $all_topics = TopicManager::getTopics($database);?>
+            $all_topics = TopicManager::getTopics(__db());?>
             <div class="col-md-offset-2 col-md-6">
                 <h1>All Topics</h1><?php
             foreach ($all_topics as $topic)

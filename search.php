@@ -67,9 +67,7 @@
                     if(isset($_GET['oprj'])) array_push($project_options, $_GET['oprj']);
                     if(isset($_GET['osrp'])) array_push($project_options, $_GET['osrp']);
                 $search = new Search($search_str, $user_options, $project_options);
-                $database = new PDO($dbconnexion, $dbuser, $dbpwd);
-                $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $search_manager = new SearchManager($database);
+                $search_manager = new SearchManager();
                 $search_results = $search_manager->search($search);
                 foreach ($search_results as $collection) {
                     echo '<div class="col-md-offset-2 col-md-8"><h2>'.$collection->heading().'</h2></div>';

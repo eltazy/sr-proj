@@ -3,19 +3,16 @@ include_once 'Idea.class.php';
 include_once 'Project.class.php';
 include_once 'SeniorProject.class.php';
 include_once 'Research.class.php';
+include_once 'ManagerAbstraction.class.php';
 
 include_once 'TopicManager.class.php';
 
-class IdeaAbstractionManager{
-    private $_db;
+class IdeaAbstractionManager extends ManagerAbstraction{
+    // private $_db;
 
     // constructor
-    public function __construct($db){
-    	$this->setDB($db);
-    }
-    // setters
-    public function setDB(PDO $temp_db){
-    	$this->_db = $temp_db;
+    public function __construct(){
+        parent::__construct();
     }
     // getters
     public function db(){

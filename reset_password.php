@@ -17,9 +17,7 @@
         $new_pwd=$_POST['new_password'];
         $username = $_POST['u'];
 
-		$database = new PDO($dbconnexion, $dbuser, $dbpwd);
-		$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $temp_cred = new AuthenticationManager($database);
+        $temp_cred = new AuthenticationManager();
         $temp_auth = $temp_cred->get($username);
         $temp_cred->updatePassword($temp_auth, md5($new_pwd));
         unset($_POST);

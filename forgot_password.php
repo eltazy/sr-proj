@@ -23,8 +23,7 @@
 	}	
     if(isset($_POST['submit_pwd_forgotten'])){
 		$email = $_POST['locked_user_email'];
-		$database = new PDO($dbconnexion, $dbuser, $dbpwd);
-		$temp_StudentManager = new StudentManager($database);
+		$temp_StudentManager = new StudentManager();
 		$temp_user = $temp_StudentManager->get_from_email($email);
 		if($temp_user){
 			$headers = "From: support@ueab.ac.ke \r\n";

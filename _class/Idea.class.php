@@ -2,7 +2,7 @@
 include_once 'IdeaAbstraction.class.php';
 
 class Idea extends IdeaAbstraction  implements IdeaState, Type{
-    private $_developped_project_id;
+    // private $_developped_project_id;
 
     //constructor and/or hydration
     public function __construct(array $t_array){

@@ -1,7 +1,7 @@
 <?php
 class File{
     private $_filename;
-    private $_description;
+    // private $_description;
     private $_type;
     private $_size;
 

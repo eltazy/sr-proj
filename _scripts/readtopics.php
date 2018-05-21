@@ -3,11 +3,12 @@ if (!isset($_SESSION)) session_start();
 
 include_once '../_class/TopicManager.class.php';
 
-    $database = new PDO($dbconnexion, $dbuser, $dbpwd);
+include '_config/db.php';
+
     if(isset($_POST['keyword'])){
         $temp = explode(';', $_POST['keyword']);
         $str = end($temp);
-        $quest = $database->prepare("SELECT topic FROM topics WHERE topic REGEXP '$str'");
+        $quest = __db()->prepare("SELECT topic FROM topics WHERE topic REGEXP '$str'");
         $quest->execute();
 
         $result = $quest->fetchAll();

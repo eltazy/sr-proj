@@ -23,7 +23,6 @@
 		if(isset($_GET['user'])){
 			$username = $_GET['user'];
 			$temp = isset($_SESSION['repsyst_session_username'])?$_SESSION['repsyst_session_username']:'';
-			$database = new PDO($dbconnexion, $dbuser, $dbpwd);
 			
 			if ($username == 'myprofile' || $username == $temp){
 				?>
@@ -54,9 +53,9 @@
 					<div class="col-md-offset-1 col-md-10">
 						<h1>Projects</h1>
 						<ul> <?php
-							$projects = IdeaAbstractionManager::getProjects($_SESSION['repsyst_session_username'], $database);
+							$projects = IdeaAbstractionManager::getProjects($_SESSION['repsyst_session_username'], __db());
 							foreach ($projects as $p)
-								echo '<li><a href="http://localhost/sr-proj/project.php?uid='.$p["uid"].'">'.IdeaAbstractionManager::getTitle($p['uid'], $database).'</a></li>'; ?>
+								echo '<li><a href="http://localhost/sr-proj/project.php?uid='.$p["uid"].'">'.IdeaAbstractionManager::getTitle($p['uid'], __db()).'</a></li>'; ?>
 						</ul>
 					</div>
 				</div>
@@ -64,9 +63,8 @@
 			<?php }
 			// another user's profile
 			else{
-				$database = new PDO($dbconnexion, $dbuser, $dbpwd);
 				$__Manager = $_GET['type'].'Manager';
-				$manager = new $__Manager($database);
+				$manager = new $__Manager();
 				// get user public info
 				$user = $manager->getPublicInfo($username);
 				echo "<title>".$user->firstname()."'s Profile</title>";
@@ -79,9 +77,9 @@
 					<label>Lastname:</label> <?= $user->lastname() ?><br>
 					<label>Username:</label> <?= $user->username() ?><br>
 					<h1>Projects</h1> <?php
-						$projects = IdeaAbstractionManager::getProjects($user->username(), $database);
+						$projects = IdeaAbstractionManager::getProjects($user->username(), __db());
 						foreach ($projects as $p) {?>
-								<li><a href="http://localhost/sr-proj/project.php?uid=<?= $p['uid'] ?>"><?= IdeaAbstractionManager::getTitle($p['uid'], $database) ?></a></li>
+								<li><a href="http://localhost/sr-proj/project.php?uid=<?= $p['uid'] ?>"><?= IdeaAbstractionManager::getTitle($p['uid'], __db()) ?></a></li>
 						<?php } ?>
 				</div><?php
 			}

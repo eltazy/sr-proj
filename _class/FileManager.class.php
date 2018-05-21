@@ -1,16 +1,13 @@
 <?php
 include_once 'File.class.php';
+include_once 'ManagerAbstraction.class.php';
 
-class FileManager{
-    private $_db;
+class FileManager extends ManagerAbstraction{
+    // private $_db;
 
     //constructor
-    public function __construct($db){
-        $this->setDB($db);
-    }
-    //setters
-    public function setDB(PDO $temp_db){
-        $this->_db = $temp_db;
+    public function __construct(){
+        parent::__construct();
     }
     //methods
     public function add(File $file){

@@ -27,13 +27,12 @@
 		if(isset($_GET['user'])){
 			$username = $_GET['user'];
 			$user_type = $_GET['type'].'Manager';
-			$database = new PDO($dbconnexion, $dbuser, $dbpwd);
-				$manager = new $user_type($database);
+				$manager = new $user_type(__db());
 				// get user info
 				$user = $manager->get($username);
 				echo "<title>".$user->firstname()."'s Profile</title>";
 			if(isset($_POST['submit_delete_user'])){
-				$user_type::delete($username, $database);
+				$user_type::delete($username, __db());
 				header("Location: search.php?pall=on&uall=on&search=".$username);
 				exit();
 			}
@@ -61,11 +60,11 @@
 				<div class="row"><label>User Type:</label> <?= $user->type() ?></div>
 			</div>
 			<div class="col-md-5"><?php
-					$projects = IdeaAbstractionManager::getProjects($user->username(), $database);?>
+					$projects = IdeaAbstractionManager::getProjects($user->username(), __db());?>
 					<div class="row"><label><u>Projects</u> (<?= count($projects)?>)</label> <?php
 					echo '<ul>';
 					foreach ($projects as $p) {?>
-							<li><a href="http://localhost/sr-proj/project.php?uid=<?= $p['uid'] ?>"><?= IdeaAbstractionManager::getTitle($p['uid'], $database) ?></a></li>
+							<li><a href="http://localhost/sr-proj/project.php?uid=<?= $p['uid'] ?>"><?= IdeaAbstractionManager::getTitle($p['uid'], __db()) ?></a></li>
 					<?php }
 					echo '</ul>';
 					?>

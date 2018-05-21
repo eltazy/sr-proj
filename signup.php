@@ -18,9 +18,7 @@
 
 	if(isset($_SESSION['repsyst_session_username'])) header("Location: index.php");
 	if(isset($_POST['submit_signup'])){
-		$database = new PDO($dbconnexion, $dbuser, $dbpwd);
-		$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$std_manager = new StudentManager($database);
+		$std_manager = new StudentManager();
 	
 		//creating student object and formatting attributes
 		$t_array = array(
@@ -60,9 +58,9 @@
 		//adding credentials to database
 		if(isset($_POST['firstpasswd']) && isset($_POST['reenterpasswd'])){
 			if($_POST['firstpasswd'] == $_POST['reenterpasswd']){
-				global $database, $temp_student, $std_manager;
+				global $temp_student, $std_manager;
 				$temp_Credentials = new Authentication($temp_student->username(), md5($_POST['firstpasswd']));
-				$temp_CredManager = new AuthenticationManager($database);
+				$temp_CredManager = new AuthenticationManager();
 				$uid = uniqid();
 				$std_manager->temp_add($temp_student, $uid);
 				$temp_CredManager->temp_add($temp_Credentials, $uid);

@@ -6,12 +6,10 @@
 	include '_pages/header.php';
 
 	if(isset($_GET['usr']) && isset($_GET['uniqueid'])){
-		$database = new PDO($dbconnexion, $dbuser, $dbpwd);
-		$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$usr = $_GET['usr'];
 		$uid = $_GET['uniqueid'];
-		$std_manager = new StudentManager($database);
-		$cred_manager = new AuthenticationManager($database);
+		$std_manager = new StudentManager();
+		$cred_manager = new AuthenticationManager();
 
 		if($std_manager->tempStudentExists($usr, $uid) && $cred_manager->tempCredentialsExists($usr, $uid)){
 			//creating new student and credentials

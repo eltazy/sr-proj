@@ -1,16 +1,13 @@
 <?php
 include_once 'Authentication.class.php';
+include_once 'ManagerAbstraction.class.php';
 
-class AuthenticationManager{
-    private $_db;
-
+class AuthenticationManager extends ManagerAbstraction{
+    // private $_db;
     //constructor
-    public function __construct($db){
-        $this->setDB($db);
-    }
-    //setters
-    public function setDB(PDO $temp_db){
-        $this->_db = $temp_db;
+    public function __construct(){
+        parent::__construct();
+        // $this->_db = parent::$_db;
     }
     //methods
     public function add(Authentication $credentials){

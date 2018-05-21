@@ -1,7 +1,10 @@
 <!-- Page header -->
 <?php
     if (!isset($_SESSION)) session_start();
-    include_once './_config/db.php';
+    include_once '../_class/_config/db.php';
+
+    // showing errors on linux
+    ini_set('display_errors', 1);
 ?>
 <head>
     <meta charset="utf-8" />
@@ -30,7 +33,8 @@
                 <li><a href="topic.php"><b>Topics</b></a></li>
             </ul>
             <?php
-                if(basename($_SERVER["SCRIPT_FILENAME"], '.php') != 'search'){ ?>                                
+                $basename = basename($_SERVER["SCRIPT_FILENAME"], '.php');
+                if(!in_array($basename, array('search', 'topic'))){ ?>                                
                     <form class="navbar-form navbar-left" action="./search.php" name="search_form" method="get">
                         <div class="form-group">
                             <input type="hidden" name="uall" value="all users" checked="checked">

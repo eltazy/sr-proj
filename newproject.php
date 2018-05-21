@@ -39,38 +39,10 @@
             $docs = ''; $uid = '';
             $links = $_POST['links'];
 
-            $database = new PDO($dbconnexion, $dbuser, $dbpwd);
-            $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
             # Generating unique identifier
             do $uid = strtoupper(substr(sha1($type.$title.uniqid()), -12));
-            while (IdeaAbstractionManager::uidExists($uid, $database));
-
-            # Check files upload
-            # TODO:(8) (Javascript) file uploading process
-            // $success = true;
-            // for($i = 0, $size = count($_FILES['uploads']['name']); $i < $size; $i++){
-            //     if($_FILES['uploads']['error'][$i] > 0) $success = false;
-            //     else{
-            //         $file_name = $_FILES['uploads']['name'][$i];
-            //         $file_temp_name = $_FILES['uploads']['tmp_name'][$i];
-        
-            //         $file_extension = explode('.', $file_name);
-            //         $file_extension = strtolower(end($file_extension));
-        
-            //         $allowed_file_extensions = array('pdf', 'doc', 'odt', 'odp', 'docx', 'ppt', 'pptx', 'ppsx', 'pps');
-        
-            //         if(in_array($file_extension, $allowed_file_extensions)){
-            //             if($_FILES['uploads']['size'][$i] < 20971520) { //less than 20MB
-            //                 $new_filename = '_uploads/_documents/'.$uid.'.'.$file_extension;
-            //                 move_uploaded_file($file_temp_name, $new_filename);
-            //                 $docs = $docs.';'.$new_filename;
-            //             }
-            //             else $success = false;
-            //         }
-            //         else $success = false;
-            //     }
-            // }
+            while (IdeaAbstractionManager::uidExists($uid, __db()));
+            
             #Building array to pass to constructor
             $t_project = array('uid'=>$uid,
                                 'title'=>$title,
@@ -84,7 +56,7 @@
             #Check type
             $Constructor = str_replace(' ', '', $type);
             $my_idea = new $Constructor($t_project);            
-            $idea_manager = new IdeaAbstractionManager($database);
+            $idea_manager = new IdeaAbstractionManager();
             $idea_manager->add($my_idea);
 
             #Returns error message if files could not be uploaded fully

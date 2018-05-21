@@ -1,16 +1,13 @@
 <?php
 include_once 'Student.class.php';
+include_once 'ManagerAbstraction.class.php';
 
-class StudentManager{
-    private $_db;
+class StudentManager extends ManagerAbstraction{
+    // private $_db;
 
     //constructor
-    public function __construct($db){
-        $this->setDB($db);
-    }
-    //setters
-    public function setDB(PDO $temp_db){
-        $this->_db = $temp_db;
+    public function __construct(){
+        parent::__construct();
     }
     //methods
     public function add(Student $student){

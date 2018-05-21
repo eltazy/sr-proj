@@ -6,10 +6,8 @@
     include_once '_class/LecturerManager.class.php';
 
 	if(isset($_POST['submit_update_profile'])){
-        $database = new PDO($dbconnexion, $dbuser, $dbpwd);
-		$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $UserManager = $_SESSION['repsyst_session_type'].'Manager';
-        $UserManager = new $UserManager($database);
+        $UserManager = new $UserManager();
         $e= $UserManager->update($_SESSION['repsyst_session_username'], $_POST);
         header("Location: profile.php?user=myprofile");
         $new_session_user = $UserManager->get($_SESSION['repsyst_session_username']);

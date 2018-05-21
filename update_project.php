@@ -9,10 +9,7 @@
     <script src="_scripts/upload.js"></script>
     <body>
         <div class="container-fluid" id="pagecontent">
-    <?php    
-    $database = new PDO($dbconnexion, $dbuser, $dbpwd);
-    $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+    <?php
     if(isset($_POST['submit_cancel'])){
         unset($_SESSION['temp_uid']);
         header("Location: http://localhost/sr-proj/project.php?uid=".$_POST["uid"]);
@@ -26,16 +23,16 @@
                                 "coauthors" => $_POST["authors"],
                                 "keywords" => $_POST["keywords"],
                                 "state" => $_POST["state"] );            
-        $idea_manager = new IdeaAbstractionManager($database);
+        $idea_manager = new IdeaAbstractionManager();
         $idea_manager->update($_POST["uid"], $temp_project);
         header("Location: http://localhost/sr-proj/project.php?uid=".$_POST["uid"]);        
     }
     else if(isset($_GET['uid'])){
         $uid = $_GET['uid'];
 
-        $manager = new IdeaAbstractionManager($database);
+        $manager = new IdeaAbstractionManager();
         $project = $manager->get($uid);
-        $documents = FileManager::getFiles($uid, $database);
+        $documents = FileManager::getFiles($uid, __db());
         $_SESSION['temp_uid'] = $project->uid();
         // print_r($project);
         $type = str_replace(' ', '', $project->type());
